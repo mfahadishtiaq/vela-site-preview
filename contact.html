@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talk to us · Vela</title>
+<link rel="icon" href="media/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="media/logo/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="media/logo/apple-touch-icon.png">
+<meta name="description" content="Tell Vela what takes your time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet"><!-- DL-126: Geist for headings and body -->
+<link rel="stylesheet" href="menu.css"><!-- DL-128: Products menu -->
+<style>
+/* Contact page (Fahad 2026-10-04: "the form should be a separate, dedicated page"). The home page now ends in a short
+   "Let's have a conversation" block that links here. Tokens, header, buttons and footer are copied from index.html;
+   words from copy-deck.md (Contact block + Contact page). Brand: DL-056 colours, DL-057 body font, DL-092 headings (Helvetica Neue), DL-097 logo. */
+:root{
+  --white:#fff; --blush:#fffdfe; --linen:#fefafb; --linen-2:#fcf5f8; --line:#f3ecef; /* DL-125: light pink ground (was linen #f6f2ed, line #e8e2da) */
+  --ink:#111111; --body:#26262a; --mute:#5f5b55;
+  --rasp:#bb4470; --rasp-hover:#99385c; --rasp-soft:#f7e9ee; --rasp-dark:#cf7c9b;
+  --head:"Geist", "Helvetica Neue", Helvetica, Arial, sans-serif; /* DL-126 (2026-10-27): Geist for headings and body, after sierra.ai (replaces DL-092 Helvetica Neue) */
+  --serif:var(--head); /* old name, kept so any rule still using it resolves */
+  --sans:"Geist", system-ui, -apple-system, sans-serif; /* DL-126, replaces DL-057 Source Sans 3 */
+  --wrap:1240px; --gut:clamp(20px,4vw,48px);
+  --r-frame:28px; --r-card:20px;
+  --shadow:0 30px 70px -40px rgba(17,17,17,.38), 0 2px 6px rgba(17,17,17,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overscroll-behavior-y:none}
+body{background:var(--blush);color:var(--body);font-family:var(--sans);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+:focus-visible{outline:2px solid var(--rasp);outline-offset:3px}
+
+/* Type */
+.h1{font-family:var(--head);font-weight:400;font-size:clamp(50px,7vw,104px);line-height:1;letter-spacing:-.028em;color:var(--ink);text-wrap:balance}
+.lede{font-size:19px;line-height:1.55;color:var(--body);max-width:30rem}
+
+/* Logo (DL-097): the Vela Systems lockup Fahad picked on 2026-10-04 (Brand/Logo/), replacing the DL-058 tile. In the header
+   it sits in a white glass pill so it reads over every frame of the hero film; in the footer it stands plain and larger */
+.logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0}
+.logo img{height:40px;width:auto}
+.top .logo{padding:0}
+footer .logo img{height:60px}
+@media (max-width:600px){ .top .logo img{height:34px} }
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 17px/1 var(--sans);padding:15px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:background .25s,color .25s,transform .25s}
+.btn-rasp{background:var(--rasp);color:#fff}
+.btn-rasp:hover{background:var(--rasp-hover)}
+
+/* Floating header (as on the home page; the top bar was cut, DL-088) */
+/* The top strip, restored (Fahad 2026-10-04, DL-100; cut by DL-088): one line above the header, as before */
+.bar{height:44px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;color:var(--body);padding:0 16px;text-align:center;background:transparent;margin:0}
+.bar b{font-weight:600;color:var(--ink)}
+.bar a{font-weight:500;color:var(--ink);text-underline-offset:3px}
+.bar a:hover{color:var(--rasp)}
+@media (max-width:600px){ .bar .hide-s{display:none} }
+.top{position:fixed;left:0;right:0;top:56px;z-index:50;transition:top .35s ease;pointer-events:none}
+.top.up{top:12px}
+/* Header bar (Fahad 2026-10-04, DL-099): clear over the page; turns white while the mouse is up in it, clear again when it
+   leaves (mouse only, so touch screens never get a stuck white bar). The logo sits on it with no pill. */
+.top::before{content:"";position:absolute;left:0;right:0;top:-12px;bottom:-16px;z-index:-1;background:rgba(255,255,255,.97);box-shadow:0 1px 0 rgba(17,17,17,.06);opacity:0;transition:opacity .3s ease,top .35s ease,bottom .35s ease;pointer-events:none}
+.top.up::before{top:-12px;bottom:-12px}
+@media (hover:hover){ .top::before{pointer-events:auto} .top:hover::before{opacity:1} }
+.top .row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gut)}
+.top .row > *{pointer-events:auto}
+.top nav{display:flex;gap:4px;padding:5px;border-radius:999px;transition:background .35s,box-shadow .35s,backdrop-filter .35s}
+.top.up nav{background:rgba(255,255,255,.78);backdrop-filter:blur(14px);box-shadow:0 6px 24px -12px rgba(17,17,17,.25)}
+.top nav a{font-weight:500;font-size:16px;text-decoration:none;color:var(--ink);padding:9px 14px;border-radius:999px;transition:background .2s}
+.top nav a:hover{background:rgba(17,17,17,.06)}
+.top .cta{justify-self:end;padding:13px 20px;font-size:16px}
+.top .logo{justify-self:start}
+
+/* CONTACT: the home page's pale rounded frame, larger, with the form on a white card */
+.contact{margin:132px 12px 0;border-radius:var(--r-frame);background:linear-gradient(160deg,var(--linen) 0%,var(--linen-2) 100%);padding:clamp(64px,8vw,120px) 0;min-height:calc(100svh - 144px)}
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,96px);align-items:start}
+.contact .lede{margin-top:28px}
+.fine{font-size:17px;color:var(--body);margin-top:14px}
+.confirm{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rasp);border:1px dashed var(--rasp);border-radius:999px;padding:4px 8px;margin-left:6px;white-space:nowrap;vertical-align:2px}
+.form{background:#fff;border-radius:var(--r-card);padding:clamp(24px,3.4vw,44px);display:grid;gap:18px;box-shadow:var(--shadow)}
+.form label{display:grid;gap:7px;font-weight:600;font-size:16px;color:var(--ink)}
+.form input,.form textarea{font:400 18px var(--sans);color:var(--ink);border:1px solid #d9d3ca;border-radius:12px;padding:15px 16px;background:#fff}
+.form input:focus,.form textarea:focus{outline:2px solid var(--rasp);outline-offset:1px;border-color:transparent}
+.form textarea{min-height:180px;resize:vertical}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form .btn{justify-self:start;padding:16px 28px}
+.sent{font-size:15px;color:#2f7a4b;font-weight:600;min-height:1.2em}
+
+/* Footer (as on the home page) */
+footer{padding:72px 0 40px;font-size:16px}
+footer .top-row{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+footer .tag{margin-top:16px;color:var(--mute);max-width:22rem}
+footer h4{font:600 13px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer ul a{text-decoration:none;color:var(--body)}
+footer ul a:hover{text-decoration:underline;text-underline-offset:4px}
+.legal{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px;margin-top:56px;color:var(--mute);font-size:14px}
+
+/* Reveal: short rise, no blur */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:1100px){
+  .top nav a{padding:9px 10px}
+}
+@media (max-width:900px){
+  .top{top:54px}
+  .top .row{grid-template-columns:1fr auto;padding:0 18px}
+  .top nav{display:none}
+  .contact{margin-top:116px}
+  .contact .wrap{grid-template-columns:1fr}
+  footer .top-row{grid-template-columns:1fr 1fr}
+  footer .top-row > div:first-child{grid-column:1/-1}
+}
+@media (max-width:600px){
+  body{font-size:17px}
+  .top{top:52px}
+  .contact{margin:108px 8px 0;padding:48px 0 12px}
+  .contact .wrap{padding:0 12px}
+  .form{padding:22px 18px}
+  .form .two{grid-template-columns:1fr}
+  .legal{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+
+<p class="bar"><span><b>Vela</b> <span class="hide-s">· AI systems and marketing for owner-run businesses</span> · Ontario, Canada</span><a href="contact.html">Talk to us</a></p>
+
+<header class="top" id="top">
+  <div class="row">
+    <a class="logo" href="index.html" aria-label="Vela Systems home"><img src="media/logo/vela-logo.svg" alt="" width="118" height="40"></a>
+    <nav aria-label="Main">
+      <a class="nav-prod" href="products.html">Products</a>
+      <a href="systems.html">Systems</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="blog/index.html">Blogs</a>
+      <a href="index.html#who">About</a>
+    </nav>
+    <a class="btn btn-rasp cta" href="#form" aria-current="page">Talk to us</a>
+  </div>
+</header>
+
+<main>
+<section class="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div>
+      <h1 class="h1 rv" id="contact-h">Talk to us</h1>
+      <p class="lede rv">Tell us what takes your time. We reply within one working day.<span class="confirm" title="Fahad to confirm this promise">To confirm</span></p>
+      <p class="fine rv">No sales call unless you ask for one.<span class="confirm" title="Fahad to confirm this promise">To confirm</span></p>
+    </div>
+    <form class="form rv" id="form" novalidate>
+      <div class="two">
+        <label>Your name<input name="name" autocomplete="name"></label>
+        <label>Business<input name="business" autocomplete="organization"></label>
+      </div>
+      <label>What takes your time?<textarea name="time"></textarea></label>
+      <label>Email<input name="email" type="email" autocomplete="email"></label>
+      <button class="btn btn-rasp" type="submit">Send</button>
+      <p class="sent" id="sent" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="top-row">
+      <div><a class="logo" href="index.html" aria-label="Vela Systems home"><img src="media/logo/vela-logo.svg" alt="" width="118" height="40"></a><p class="tag">AI systems and marketing for owner-run businesses.</p></div>
+      <div><h4>Pages</h4><ul><li><a href="products.html">Products</a></li><li><a href="systems.html">Systems</a></li><li><a href="marketing.html">Marketing</a></li><li><a href="blog/index.html">Blogs</a></li><li><a href="index.html#who">About</a></li><li><a href="contact.html" aria-current="page">Contact</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Email: to come</li><li>Ontario, Canada</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Vela · velasystems.ca</span><span>Screens marked Example are illustrations.</span></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Header: slides up to the top edge and the nav gets its pill once the bar is passed
+  const top = document.getElementById('top');
+  const setTop = () => top.classList.toggle('up', scrollY > 30);
+  addEventListener('scroll', setTop, {passive:true}); setTop();
+
+  // Reveal: one at a time with a short beat between
+  const rv = [...document.querySelectorAll('.rv')];
+  if (reduce || !('IntersectionObserver' in window)) rv.forEach(e => e.classList.add('in'));
+  else {
+    const queue = []; let busy = false;
+    const drain = () => { if (!queue.length) { busy = false; return; } busy = true; queue.shift().classList.add('in'); setTimeout(drain, 120); };
+    const io = new IntersectionObserver(es => { es.filter(e => e.isIntersecting).forEach(e => { io.unobserve(e.target); queue.push(e.target); }); if (!busy) drain(); });
+    rv.forEach(e => io.observe(e));
+  }
+
+  // Form: not connected in this mockup (wiring it is a launch task)
+  document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); document.getElementById('sent').textContent = 'Mockup only: this form is not connected yet.'; });
+
+  // Verification hook (IntersectionObserver is unreliable in the Claude pane)
+  window.__revealAll = () => rv.forEach(e => e.classList.add('in'));
+})();
+</script>
+<script src="menu.js" defer></script>
+</body>
+</html>

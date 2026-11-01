@@ -1,0 +1,29 @@
+/* Products menu (DL-128, 2026-10-27): the Sierra-style panel from the 2026-10-27 products demo, in the site's Geist and
+   light pink. Every page loads this file and menu.js; the nav keeps a plain "Products" link, so it works without script. */
+.top nav a.nav-prod{display:inline-flex;align-items:center;gap:6px}
+.top nav a.nav-prod svg{width:10px;height:10px;transition:transform .25s}
+.top nav a.nav-prod[aria-expanded="true"]{background:rgba(17,17,17,.06)}
+.top nav a.nav-prod[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mega{position:absolute;left:var(--gut);right:var(--gut);top:calc(100% + 14px);background:#fff;border-radius:22px;
+  box-shadow:0 40px 90px -40px rgba(17,17,17,.4),0 2px 8px rgba(17,17,17,.06);padding:30px 34px 24px;
+  opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s;text-align:left}
+.mega.open{opacity:1;visibility:visible;transform:none;transition:opacity .22s ease,transform .22s ease}
+.mega::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px} /* keeps the hover alive across the gap */
+.mega .mt{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.mega .mt h2{font:400 30px/1.1 var(--head);color:var(--ink);letter-spacing:-.015em}
+.mega .mt p{margin-top:6px;font-size:16px;color:var(--body)}
+.mega .mt .all{display:inline-flex;align-items:center;gap:10px;font:500 16px/1 var(--sans);padding:13px 20px;border-radius:999px;background:var(--linen-2);color:var(--ink);text-decoration:none;white-space:nowrap}
+.mega .mt .all svg{width:15px;height:15px}
+.mega .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding:26px 0 22px}
+.mega .st{font-size:14px;color:var(--mute);margin-bottom:20px}
+.mega .cols a{display:block;text-decoration:none;border-radius:14px;padding:12px;margin:-12px;transition:background .25s}
+.mega .cols a:hover,.mega .cols a:focus-visible{background:var(--linen)}
+.mega .pn{display:block;font:400 24px/1.15 var(--head);color:var(--ink);letter-spacing:-.01em}
+.mega .pc{display:block;font:600 12px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rasp);margin:7px 0 8px}
+.mega .pl{display:block;font-size:15.5px;color:var(--body);line-height:1.45}
+.mega .mb{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:18px;font-size:15px;color:var(--mute)}
+.mega .mb b{color:var(--ink);font-weight:500}
+.mega .mb a{color:var(--ink);font-weight:500;text-decoration:none;white-space:nowrap}
+.mega .mb a:hover{color:var(--rasp)}
+@media (max-width:900px){.mega{display:none}}
+@media (prefers-reduced-motion:reduce){.mega,.mega.open{transition:none}}

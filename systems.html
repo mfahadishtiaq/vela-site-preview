@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Systems · Vela</title>
+<link rel="icon" href="media/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="media/logo/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="media/logo/apple-touch-icon.png">
+<meta name="description" content="Vela systems join four products, Compass, Harbour, Lighthouse and Helm, around one kind of business, built in your own database. Broker Desk is the first.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet"><!-- DL-126: Geist for headings and body -->
+<link rel="stylesheet" href="menu.css"><!-- DL-128: Products menu -->
+<style>
+:root{
+  --white:#fff; --blush:#fffdfe; --linen:#fefafb; --linen-2:#fcf5f8; --line:#f3ecef; /* DL-125: light pink ground (was linen #f6f2ed, line #e8e2da) */
+  --ink:#111111; --body:#26262a; --mute:#5f5b55;
+  --rasp:#bb4470; --rasp-hover:#99385c; --rasp-soft:#f7e9ee; --rasp-dark:#cf7c9b;
+  --head:"Geist", "Helvetica Neue", Helvetica, Arial, sans-serif; /* DL-126 (2026-10-27): Geist for headings and body, after sierra.ai (replaces DL-092 Helvetica Neue) */
+  --serif:var(--head); /* old name, kept so any rule still using it resolves */
+  --sans:"Geist", system-ui, -apple-system, sans-serif; /* DL-126, replaces DL-057 Source Sans 3 */
+  --wrap:1240px; --gut:clamp(20px,4vw,48px); --gap:clamp(96px,11vw,170px);
+  --r-frame:28px; --r-card:20px;
+  --shadow:0 30px 70px -40px rgba(17,17,17,.38), 0 2px 6px rgba(17,17,17,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overscroll-behavior-y:none}
+body{background:var(--blush);color:var(--body);font-family:var(--sans);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+:focus-visible{outline:2px solid var(--rasp);outline-offset:3px}
+
+/* Type */
+.h1{font-family:var(--head);font-weight:400;font-size:clamp(50px,7vw,104px);line-height:1;letter-spacing:-.028em;color:var(--ink);text-wrap:balance}
+.lede{font-size:19px;line-height:1.55;color:var(--body);max-width:30rem}
+
+/* Logo (DL-097): the Vela Systems lockup Fahad picked on 2026-10-04 (Brand/Logo/), replacing the DL-058 tile. In the header
+   it sits in a white glass pill so it reads over every frame of the hero film; in the footer it stands plain and larger */
+.logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0}
+.logo img{height:40px;width:auto}
+.top .logo{padding:0}
+footer .logo img{height:60px}
+@media (max-width:600px){ .top .logo img{height:34px} }
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 17px/1 var(--sans);padding:15px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:background .25s,color .25s,transform .25s}
+.btn-rasp{background:var(--rasp);color:#fff}
+.btn-rasp:hover{background:var(--rasp-hover)}
+
+/* Floating header (as on the home page; the top bar was cut, DL-088) */
+/* The top strip, restored (Fahad 2026-10-04, DL-100; cut by DL-088): one line above the header, as before */
+.bar{height:44px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;color:var(--body);padding:0 16px;text-align:center;background:transparent;margin:0}
+.bar b{font-weight:600;color:var(--ink)}
+.bar a{font-weight:500;color:var(--ink);text-underline-offset:3px}
+.bar a:hover{color:var(--rasp)}
+@media (max-width:600px){ .bar .hide-s{display:none} }
+.top{position:fixed;left:0;right:0;top:56px;z-index:50;transition:top .35s ease;pointer-events:none}
+.top.up{top:12px}
+/* Header bar (Fahad 2026-10-04, DL-099): clear over the page; turns white while the mouse is up in it, clear again when it
+   leaves (mouse only, so touch screens never get a stuck white bar). The logo sits on it with no pill. */
+.top::before{content:"";position:absolute;left:0;right:0;top:-12px;bottom:-16px;z-index:-1;background:rgba(255,255,255,.97);box-shadow:0 1px 0 rgba(17,17,17,.06);opacity:0;transition:opacity .3s ease,top .35s ease,bottom .35s ease;pointer-events:none}
+.top.up::before{top:-12px;bottom:-12px}
+@media (hover:hover){ .top::before{pointer-events:auto} .top:hover::before{opacity:1} }
+.top .row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gut)}
+.top .row > *{pointer-events:auto}
+.top nav{display:flex;gap:4px;padding:5px;border-radius:999px;transition:background .35s,box-shadow .35s,backdrop-filter .35s}
+.top.up nav{background:rgba(255,255,255,.78);backdrop-filter:blur(14px);box-shadow:0 6px 24px -12px rgba(17,17,17,.25)}
+.top nav a{font-weight:500;font-size:16px;text-decoration:none;color:var(--ink);padding:9px 14px;border-radius:999px;transition:background .2s}
+.top nav a:hover{background:rgba(17,17,17,.06)}
+.top .cta{justify-self:end;padding:13px 20px;font-size:16px}
+.top .logo{justify-self:start}
+
+/* CONTACT: the home page's pale rounded frame, larger, with the form on a white card */
+.contact{margin:132px 12px 0;border-radius:var(--r-frame);background:linear-gradient(160deg,var(--linen) 0%,var(--linen-2) 100%);padding:clamp(64px,8vw,120px) 0;min-height:calc(100svh - 144px)}
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,96px);align-items:start}
+.contact .lede{margin-top:28px}
+.fine{font-size:17px;color:var(--body);margin-top:14px}
+.confirm{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rasp);border:1px dashed var(--rasp);border-radius:999px;padding:4px 8px;margin-left:6px;white-space:nowrap;vertical-align:2px}
+.form{background:#fff;border-radius:var(--r-card);padding:clamp(24px,3.4vw,44px);display:grid;gap:18px;box-shadow:var(--shadow)}
+.form label{display:grid;gap:7px;font-weight:600;font-size:16px;color:var(--ink)}
+.form input,.form textarea{font:400 18px var(--sans);color:var(--ink);border:1px solid #d9d3ca;border-radius:12px;padding:15px 16px;background:#fff}
+.form input:focus,.form textarea:focus{outline:2px solid var(--rasp);outline-offset:1px;border-color:transparent}
+.form textarea{min-height:180px;resize:vertical}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form .btn{justify-self:start;padding:16px 28px}
+.sent{font-size:15px;color:#2f7a4b;font-weight:600;min-height:1.2em}
+
+/* Footer (as on the home page) */
+footer{padding:72px 0 40px;font-size:16px}
+footer .top-row{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+footer .tag{margin-top:16px;color:var(--mute);max-width:22rem}
+footer h4{font:600 13px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer ul a{text-decoration:none;color:var(--body)}
+footer ul a:hover{text-decoration:underline;text-underline-offset:4px}
+.legal{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px;margin-top:56px;color:var(--mute);font-size:14px}
+
+/* Reveal: short rise, no blur */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:1100px){
+  .top nav a{padding:9px 10px}
+}
+@media (max-width:900px){
+  .top{top:54px}
+  .top .row{grid-template-columns:1fr auto;padding:0 18px}
+  .top nav{display:none}
+  .contact{margin-top:116px}
+  .contact .wrap{grid-template-columns:1fr}
+  footer .top-row{grid-template-columns:1fr 1fr}
+  footer .top-row > div:first-child{grid-column:1/-1}
+}
+@media (max-width:600px){
+  body{font-size:17px}
+  .top{top:52px}
+  .contact{margin:108px 8px 0;padding:48px 0 12px}
+  .contact .wrap{padding:0 12px}
+  .form{padding:22px 18px}
+  .form .two{grid-template-columns:1fr}
+  .legal{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+}
+
+/* SYSTEMS PAGE (DL-155, Fahad 2026-10-28: "start fresh for the systems page based off of this new information about the
+   products"). Built from the product facts settled on 2026-10-28: four products (Compass, Harbour, Lighthouse, Helm),
+   Helm the only one people talk to (DL-136), everything in the client's own database (DL-145), no vendor names (DL-144),
+   no approval steps in the copy (DL-142). Shell copied from products.html. */
+.eyebrow{display:block;font:600 13px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rasp);margin-bottom:18px}
+.h2{font-family:var(--head);font-weight:400;font-size:clamp(36px,4.4vw,62px);line-height:1.1;letter-spacing:-.022em;color:var(--ink);text-wrap:balance}
+.btn svg{width:16px;height:16px;flex:0 0 16px;transition:transform .25s}
+.btn:hover svg{transform:translateX(3px)}
+.sec{padding:var(--gap) 0;border-top:1px solid var(--line)}
+.sec .lede{margin-top:22px;max-width:34rem}
+
+/* Hero: the galaxy with Vela behind it, through the 21st.dev butterfly recipe (DL-146 to DL-154, ascii.js), in a
+   rounded panel below the header like the Products banner; white text bottom left on a shade */
+.s-hero{position:relative;overflow:hidden;isolation:isolate;margin:132px 12px 0;border-radius:var(--r-frame);
+  height:calc(100svh - 144px);min-height:560px;max-height:1000px;background:#050507}
+.s-hero canvas.ascii{position:absolute;inset:0;width:100%;height:100%;display:block}
+.s-hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  linear-gradient(90deg,rgba(5,5,7,.86) 0%,rgba(5,5,7,.55) 36%,rgba(5,5,7,0) 66%),
+  linear-gradient(to top,rgba(5,5,7,.6) 0%,rgba(5,5,7,0) 50%)}
+.s-hero .copy{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 clamp(28px,4.4vw,64px) clamp(44px,7vh,84px)}
+.s-hero .eyebrow{color:#f3c3d5}
+.s-hero .h1{color:#fff;font-size:clamp(38px,4.6vw,72px);line-height:1.05;max-width:14ch}
+.s-hero .lede{color:rgba(255,255,255,.9);margin:18px 0 0;max-width:34rem}
+.s-hero .btn{margin-top:28px}
+
+/* How it fits together: you ask Helm; Compass, Harbour and Lighthouse work behind it; all on your own database */
+.fit{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,96px);align-items:center}
+.fit .pts{list-style:none;margin-top:32px;display:grid;gap:16px}
+.fit .pts li{display:grid;grid-template-columns:22px 1fr;gap:12px;font-size:17px;color:var(--body)}
+.fit .pts b{color:var(--ink);font-weight:500}
+.fit .pts .ic{width:22px;height:22px;margin-top:2px}
+.ic{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.dia{background:var(--linen);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,3.4vw,44px);display:grid;justify-items:center;gap:0}
+.ask{background:#fff;border:1px solid var(--line);border-radius:18px 18px 18px 6px;padding:12px 16px;font:500 17px/1.3 var(--head);color:var(--ink);justify-self:start;box-shadow:0 14px 30px -24px rgba(17,17,17,.4)}
+.ask small{display:block;font:500 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.vl{width:1.5px;height:28px;background:var(--rasp-dark)}
+.helm{display:flex;align-items:center;gap:14px;background:var(--ink);color:#fff;border-radius:18px;padding:16px 22px;min-width:min(100%,330px)}
+.helm .ci{width:40px;height:40px;border-radius:12px;background:var(--rasp);display:grid;place-items:center;flex:0 0 40px}
+.helm .ci .ic{stroke:#fff;width:22px;height:22px}
+.helm b{display:block;font:400 24px/1.1 var(--head);letter-spacing:-.015em}
+.helm span{font-size:14px;opacity:.75}
+.fan{width:100%;height:44px;display:block}
+.fan path{fill:none;stroke:var(--rasp-dark);stroke-width:1.5}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%}
+.three div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 14px}
+.three .ic{width:22px;height:22px;opacity:.8}
+.three b{display:block;font:400 21px/1.1 var(--head);letter-spacing:-.012em;color:var(--ink);margin-top:14px}
+.three span{display:block;font-size:14px;color:var(--body);margin-top:4px;line-height:1.4}
+.db{margin-top:12px;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;background:var(--rasp-soft);border-radius:16px;padding:16px;font-size:16px;color:var(--ink)}
+.db .ic{width:22px;height:22px;stroke:var(--rasp)}
+.db b{font-weight:600}
+.bg-note{font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:0 0 10px;justify-self:center}
+
+/* Our systems: Broker Desk, and the next one */
+.list{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;margin-top:clamp(40px,5vw,64px)}
+.sc{border-radius:24px;padding:clamp(28px,3.6vw,48px);display:flex;flex-direction:column;min-height:400px}
+.sc.bd{background:var(--ink);color:#fff}
+.sc .for{font:600 13px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#f3c3d5}
+.sc .nm{font:400 clamp(44px,5vw,72px)/1 var(--head);letter-spacing:-.032em;margin-top:16px}
+.sc .ln{font-size:clamp(18px,1.5vw,21px);line-height:1.5;margin-top:18px;max-width:30rem;opacity:.9}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:32px}
+.chips span{display:inline-flex;align-items:center;gap:8px;font:500 14px/1 var(--sans);padding:9px 13px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16)}
+.chips .ic{width:16px;height:16px;stroke:#fff}
+.sc .lk{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-weight:500;font-size:16px;color:#fff;text-decoration:none}
+.sc .lk svg{width:15px;height:15px}
+.sc.nx{border:1.5px dashed #e5c9d5;background:var(--blush);color:var(--ink)}
+.sc.nx .for{color:var(--rasp)}
+.sc.nx .ln{color:var(--body)}
+.sc.nx .btn{margin-top:auto;align-self:start}
+
+/* A day with Broker Desk: an example timeline, one product per moment */
+.day{background:var(--linen)}
+.day .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.ex{font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:#fff;border:1px solid var(--line);padding:7px 11px;border-radius:99px}
+.tl{list-style:none;margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--line)}
+.tl li{display:grid;grid-template-columns:90px 170px 1fr;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
+.tl time{font:500 15px/1 var(--sans);color:var(--mute);font-variant-numeric:tabular-nums}
+.tl .who{display:inline-flex;align-items:center;gap:9px;font:400 21px/1 var(--head);letter-spacing:-.01em;color:var(--ink)}
+.tl .who .ic{width:20px;height:20px;stroke:var(--rasp)}
+.tl p{font-size:17.5px;line-height:1.55;color:var(--body);max-width:40rem}
+.tl q{color:var(--ink);font-weight:500}
+
+/* Every system */
+.inc{padding:var(--gap) 0}
+.inc .center{text-align:center}
+.inc .cols{display:grid;grid-template-columns:repeat(3,1fr);max-width:1140px;margin:48px auto 0;border-top:1px solid var(--line)}
+.inc .cols div{padding:28px 26px 8px;border-right:1px solid var(--line)}
+.inc .cols div:last-child{border-right:0}
+.inc .cols div::before{content:"";display:block;width:24px;height:1.5px;background:var(--rasp);margin-bottom:20px}
+.inc h3{font:400 25px/1.2 var(--head);letter-spacing:-.012em;color:var(--ink)}
+.inc .cols p{margin-top:10px;font-size:16.5px;color:var(--body)}
+.close{text-align:center;padding:var(--gap) var(--gut);border-top:1px solid var(--line)}
+.close .lede{margin:20px auto 0;max-width:34rem}
+.close .btn{margin-top:32px}
+
+@media (max-width:900px){
+  .s-hero{margin-top:116px}
+  .fit,.list{grid-template-columns:1fr}
+  .inc .cols{grid-template-columns:1fr}.inc .cols div{border-right:0;border-bottom:1px solid var(--line)}
+  .tl li{grid-template-columns:70px 1fr;gap:8px 16px}.tl p{grid-column:2}
+}
+@media (max-width:600px){
+  .s-hero{margin:108px 8px 0;height:calc(100svh - 120px);min-height:540px}.s-hero .copy{padding:0 20px 40px}.s-hero .lede{font-size:17px}
+  .three{grid-template-columns:1fr}.fan{display:none}.three div{display:grid;grid-template-columns:22px 1fr;gap:2px 12px}.three b{margin-top:0;font-size:19px}.three span{grid-column:2}
+  .sc{min-height:0}
+}
+</style>
+</head>
+<body>
+
+<p class="bar"><span><b>Vela</b> <span class="hide-s">· AI systems and marketing for owner-run businesses</span> · Ontario, Canada</span><a href="contact.html">Talk to us</a></p>
+
+<header class="top" id="top">
+  <div class="row">
+    <a class="logo" href="index.html" aria-label="Vela Systems home"><img src="media/logo/vela-logo.svg" alt="" width="118" height="40"></a>
+    <nav aria-label="Main">
+      <a class="nav-prod" href="products.html">Products</a>
+      <a href="systems.html" aria-current="page">Systems</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="blog/index.html">Blogs</a>
+      <a href="index.html#who">About</a>
+    </nav>
+    <a class="btn btn-rasp cta" href="contact.html">Talk to us</a>
+  </div>
+</header>
+
+<main>
+<section class="s-hero" aria-labelledby="s-h"><canvas class="ascii" data-scene="galaxy" data-recipe="butterfly" data-bg="#050507" aria-hidden="true"></canvas>
+<div class="copy"><p class="eyebrow rv">Systems</p><h1 class="h1 rv" id="s-h">Your whole office, working as one.</h1>
+<p class="lede rv">A system joins our four products around one kind of business. It is built in your own database, so the system and every record in it are yours.</p>
+<a class="btn btn-rasp rv" href="contact.html">Book a free consultation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></div></section>
+
+<section class="sec" id="how"><div class="wrap fit">
+<div><p class="eyebrow rv">How a system works</p><h2 class="h2 rv">You talk to one. The rest work behind it.</h2>
+<p class="lede rv">Helm, your personal AI assistant, is the only one you speak to. Behind it, three systems run your office and keep Helm up to date.</p>
+<ul class="pts rv">
+<li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><span><b>Compass</b> takes every enquiry and follows it up.</span></li>
+<li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M8 10h8M5 14a7 7 0 0 0 14 0"/></svg><span><b>Harbour</b> files every document and keeps each checklist.</span></li>
+<li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 21l1-12h2l1 12z"/><path d="M9 9h6M12 3v3M4 6l3 1.5M20 6l-3 1.5"/></svg><span><b>Lighthouse</b> finds the information you keep, with its source.</span></li>
+<li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg><span><b>Helm</b> asks them for you and brings back the answer.</span></li>
+</ul></div>
+<figure class="dia rv" aria-label="You ask Helm; Helm asks Compass, Harbour and Lighthouse; all of it runs in your own database">
+<div class="ask"><small>You</small>“What came in today?”</div>
+<div class="vl"></div>
+<div class="helm"><span class="ci"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span><div><b>Helm</b><span>The one you talk to</span></div></div>
+<svg class="fan" viewBox="0 0 300 44" preserveAspectRatio="none" aria-hidden="true"><path d="M150 0V14M150 14C150 30 50 26 50 44M150 14V44M150 14C150 30 250 26 250 44"/></svg>
+<div class="three">
+<div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><b>Compass</b><span>Enquiries and follow-ups</span></div>
+<div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M8 10h8M5 14a7 7 0 0 0 14 0"/></svg><b>Harbour</b><span>Documents and checklists</span></div>
+<div><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 21l1-12h2l1 12z"/><path d="M9 9h6M12 3v3M4 6l3 1.5M20 6l-3 1.5"/></svg><b>Lighthouse</b><span>Information, with sources</span></div>
+</div>
+<div class="db"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg><span>All of it runs in <b>your own database</b>.</span></div>
+</figure>
+</div></section>
+
+<section class="sec" id="list"><div class="wrap">
+<p class="eyebrow rv">Our systems</p><h2 class="h2 rv">Built for one kind of business at a time.</h2>
+<p class="lede rv">Each system is designed around how one kind of office works, then shaped to yours: your stages, your forms, your words.</p>
+<div class="list">
+<article class="sc bd rv"><p class="for">Mortgage and insurance brokers</p><h3 class="nm">Broker Desk</h3>
+<p class="ln">From the first enquiry to the funded deal. New enquiries are followed up, documents are filed as they arrive, clients are reminded about what’s missing, and you can ask about any file.</p>
+<div class="chips"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Compass</span><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M8 10h8M5 14a7 7 0 0 0 14 0"/></svg>Harbour</span><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 21l1-12h2l1 12z"/><path d="M9 9h6M12 3v3M4 6l3 1.5M20 6l-3 1.5"/></svg>Lighthouse</span><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>Helm</span></div>
+<a class="lk" href="#day">See a day with Broker Desk <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></article>
+<article class="sc nx rv"><p class="for">Your kind of business</p><h3 class="nm">The next system</h3>
+<p class="ln">Tell us where the enquiries come in, where the paperwork piles up and who does the chasing. That is how Broker Desk started.</p>
+<a class="btn btn-rasp" href="contact.html">Book a free consultation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></article>
+</div></div></section>
+
+<section class="sec day" id="day"><div class="wrap">
+<div class="head"><div><p class="eyebrow rv">A day with Broker Desk</p><h2 class="h2 rv">While you work on the deals.</h2></div><span class="ex rv">Example</span></div>
+<ol class="tl">
+<li class="rv"><time>7:30</time><span class="who"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Compass</span><p>Your morning brief: three new enquiries overnight, two files waiting on documents, one deal closing this week.</p></li>
+<li class="rv"><time>7:31</time><span class="who"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Compass</span><p>Each new enquiry gets a reply from your own email, and its follow-ups are set.</p></li>
+<li class="rv"><time>9:14</time><span class="who"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M8 10h8M5 14a7 7 0 0 0 14 0"/></svg>Harbour</span><p>A payslip arrives by email. It is renamed, filed to the client’s folder, and the checklist moves to 7 of 8.</p></li>
+<li class="rv"><time>10:00</time><span class="who"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M8 10h8M5 14a7 7 0 0 0 14 0"/></svg>Harbour</span><p>A reminder goes to the client for the missing bank statement.</p></li>
+<li class="rv"><time>11:20</time><span class="who"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>Helm</span><p>You ask <q>Which files are still missing documents?</q> Helm checks Harbour and lists them.</p></li>
+<li class="rv"><time>14:45</time><span class="who"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 21l1-12h2l1 12z"/><path d="M9 9h6M12 3v3M4 6l3 1.5M20 6l-3 1.5"/></svg>Lighthouse</span><p>Helm needs the office policy on late documents. Lighthouse finds it, page and source attached.</p></li>
+<li class="rv"><time>16:30</time><span class="who"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Compass</span><p>Yesterday’s enquiry replies to its follow-up, and the lead moves to Documents.</p></li>
+</ol></div></section>
+
+<section class="inc"><div class="wrap center"><p class="eyebrow rv">Every system</p><h2 class="h2 rv">Three things that never change.</h2></div>
+<div class="cols"><div class="rv"><h3>You own it</h3><p>It runs in your own database and accounts. We never hold your client data, and the access we use to look after it can’t read it.</p></div>
+<div class="rv"><h3>Shaped to your office</h3><p>Built around your stages, your forms and your words, not a template you have to work around.</p></div>
+<div class="rv"><h3>Looked after</h3><p>We look after it, improve it, and send you a plain note every month on what it did.</p></div></div></section>
+
+<section class="close"><h2 class="h2 rv">Tell us how your office runs.</h2><p class="lede rv">In a free consultation, we’ll look at where your time goes and show you the system that fits, or the one we’d build next.</p><a class="btn btn-rasp rv" href="contact.html">Book a free consultation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="top-row">
+      <div><a class="logo" href="index.html" aria-label="Vela Systems home"><img src="media/logo/vela-logo.svg" alt="" width="118" height="40"></a><p class="tag">AI systems and marketing for owner-run businesses.</p></div>
+      <div><h4>Pages</h4><ul><li><a href="products.html">Products</a></li><li><a href="systems.html">Systems</a></li><li><a href="marketing.html">Marketing</a></li><li><a href="blog/index.html">Blogs</a></li><li><a href="index.html#who">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Email: to come</li><li>Ontario, Canada</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Vela · velasystems.ca</span><span>Screens marked Example are illustrations.</span></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Header: slides up to the top edge and the nav gets its pill once the bar is passed
+  const top = document.getElementById('top');
+  const setTop = () => top.classList.toggle('up', scrollY > 30);
+  addEventListener('scroll', setTop, {passive:true}); setTop();
+
+  // Reveal: one at a time with a short beat between
+  const rv = [...document.querySelectorAll('.rv')];
+  if (reduce || !('IntersectionObserver' in window)) rv.forEach(e => e.classList.add('in'));
+  else {
+    const queue = []; let busy = false;
+    const drain = () => { if (!queue.length) { busy = false; return; } busy = true; queue.shift().classList.add('in'); setTimeout(drain, 120); };
+    const io = new IntersectionObserver(es => { es.filter(e => e.isIntersecting).forEach(e => { io.unobserve(e.target); queue.push(e.target); }); if (!busy) drain(); });
+    rv.forEach(e => io.observe(e));
+  }
+
+
+  // Verification hook (IntersectionObserver is unreliable in the Claude pane)
+  window.__revealAll = () => rv.forEach(e => e.classList.add('in'));
+})();
+</script>
+<script src="menu.js" defer></script>
+<script src="ascii.js?v=159" defer></script>
+</body>
+</html>

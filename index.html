@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vela · AI systems and marketing for owner-run businesses</title>
+<link rel="icon" href="media/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="media/logo/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="media/logo/apple-touch-icon.png">
+<meta name="description" content="Vela puts AI inside the jobs that eat your day, then brings in the clients to fill it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet"><!-- DL-126: Geist for headings and body -->
+<link rel="stylesheet" href="menu.css"><!-- DL-128: Products menu -->
+<style>
+/* Round 2026-10-03 "neko home". One reference only: nekohealth.com (layout, rhythm, type scale, rounded inset hero,
+   pale section ground, white rounded rows, scroll-driven split with tabs, calm FAQ). The Shopify half of the earlier
+   hybrid (a customer's business on screen) was removed on Fahad's ruling (DL-073); like Neko, the page shows Vela's own
+   world: the hero film; How it works uses three stock photos of the work happening (2026-10-04). Brand stays Vela: DL-056 colours, DL-057 body font, DL-092 headings (Helvetica Neue),
+   DL-097 logo (Vela Systems lockup), DL-061 light only. Copy: copy-deck.md v1, nothing invented beyond example screens.
+   Tokens mirror Neko's measured system: H1 100/100, H2 68/80, H3 sans 24/28, labels 14 uppercase tracked,
+   body 18, 200px between sections, white + one pale ground. */
+:root{
+  --white:#fff; --blush:#fffdfe; --linen:#fefafb; --linen-2:#fcf5f8; --line:#f3ecef; /* DL-125: light pink ground (was linen #f6f2ed, line #e8e2da) */
+  --ink:#111111; --body:#26262a; --mute:#5f5b55;
+  --rasp:#bb4470; --rasp-hover:#99385c; --rasp-soft:#f7e9ee; --rasp-dark:#cf7c9b;
+  --head:"Geist", "Helvetica Neue", Helvetica, Arial, sans-serif; /* DL-126 (2026-10-27): Geist for headings and body, after sierra.ai (replaces DL-092 Helvetica Neue) */
+  --serif:var(--head); /* old name, kept so any rule still using it resolves */
+  --sans:"Geist", system-ui, -apple-system, sans-serif; /* DL-126, replaces DL-057 Source Sans 3 */
+  --wrap:1240px; --gut:clamp(20px,4vw,48px);
+  --gap:clamp(96px,13vw,200px);
+  --r-frame:28px; --r-card:20px; --r-row:16px;
+  --shadow:0 30px 70px -40px rgba(17,17,17,.38), 0 2px 6px rgba(17,17,17,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overscroll-behavior-y:none}
+body{background:var(--blush);color:var(--body);font-family:var(--sans);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,video{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--rasp);outline-offset:3px}
+
+/* Type */
+.h1{font-family:var(--head);font-weight:400;font-size:clamp(50px,7vw,104px);line-height:1;letter-spacing:-.028em;color:var(--ink);text-wrap:balance}
+.h2{font-family:var(--head);font-weight:400;font-size:clamp(40px,4.7vw,68px);line-height:1.12;letter-spacing:-.022em;color:var(--ink);text-wrap:balance}
+/* DL-113/118: What we do heading, smaller, one line on desktop (Fahad 2026-10-26) */
+.h2-sm{font-size:clamp(30px,3.2vw,46px);line-height:1.18;max-width:24em;margin-left:auto;margin-right:auto}
+@media (min-width:901px){.h2-sm{white-space:nowrap}}
+.label{font:600 13px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+/* Section labels (DL-088): the plain section name sits small above a more considered header line */
+.eyebrow{font:600 13px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rasp);margin-bottom:18px}
+.lede{font-size:19px;line-height:1.55;color:var(--mute);max-width:36rem}
+.center{text-align:center}
+.center .lede{margin-left:auto;margin-right:auto}
+
+/* Logo (DL-097): the Vela Systems lockup Fahad picked on 2026-10-04 (Brand/Logo/), replacing the DL-058 tile. In the header
+   it sits in a white glass pill so it reads over every frame of the hero film; in the footer it stands plain and larger */
+.logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0}
+.logo img{height:40px;width:auto}
+.top .logo{padding:0}
+footer .logo img{height:60px}
+@media (max-width:600px){ .top .logo img{height:34px} }
+
+/* Buttons: raspberry for the one main action, ink pills everywhere else (Neko's dark pill) */
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 17px/1 var(--sans);padding:15px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:background .25s,color .25s,transform .25s}
+.btn svg{width:16px;height:16px;transition:transform .25s}
+.btn:hover svg{transform:translateX(3px)}
+.btn-rasp{background:var(--rasp);color:#fff}
+.btn-rasp:hover{background:var(--rasp-hover)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:#2c2c2c}
+.btn-glass{background:rgba(255,255,255,.62);color:var(--ink);backdrop-filter:blur(10px)}
+.btn-glass:hover{background:rgba(255,255,255,.85)}
+
+/* Top bar + floating header (Neko) */
+/* The top strip, restored (Fahad 2026-10-04, DL-100; cut by DL-088): one line above the header, as before */
+.bar{height:44px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;color:var(--body);padding:0 16px;text-align:center;background:transparent;margin:0}
+/* Home: the strip lies over the top of the hero film, clear, and stays clear when the header bar turns white below it
+   (Fahad 2026-10-04, DL-101); its words stay their normal black (DL-104) */
+.bar{position:absolute;top:0;left:0;right:0;z-index:40}
+.bar b{font-weight:600;color:var(--ink)}
+.bar a{font-weight:500;color:var(--ink);text-underline-offset:3px}
+.bar a:hover{color:var(--rasp)}
+@media (max-width:600px){ .bar .hide-s{display:none} }
+.top{position:fixed;left:0;right:0;top:56px;z-index:50;transition:top .35s ease;pointer-events:none}
+.top.up{top:12px}
+/* Header bar (Fahad 2026-10-04, DL-099): clear over the page; turns white while the mouse is up in it, clear again when it
+   leaves (mouse only, so touch screens never get a stuck white bar). The logo sits on it with no pill. */
+.top::before{content:"";position:absolute;left:0;right:0;top:-12px;bottom:-16px;z-index:-1;background:rgba(255,255,255,.97);box-shadow:0 1px 0 rgba(17,17,17,.06);opacity:0;transition:opacity .3s ease,top .35s ease,bottom .35s ease;pointer-events:none}
+.top.up::before{top:-12px;bottom:-12px}
+@media (hover:hover){ .top::before{pointer-events:auto} .top:hover::before{opacity:1} }
+/* The logo changes colour in a wave every 5 seconds (Fahad 2026-10-05, DL-104: "like a wave changing its colour"): a
+   wavy edge sweeps left to right across it, turning the plum parts raspberry and the raspberry sail plum; five seconds
+   later the next wave turns it back. Two copies are stacked and the arriving one is revealed through a moving wave-shaped
+   mask. Replaces the film-timed cross-fade (DL-102/103); the nav links and top strip keep their normal black. */
+.top .logo{position:relative;--wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M-30 -30H150C150 -10 162 0 162 18C162 36 146 40 146 58C146 76 160 82 160 100C160 112 154 120 150 130H-30Z'/%3E%3C/svg%3E")}
+.top .logo img{position:relative;z-index:1}
+.top .logo .logo-swap{position:absolute;left:0;top:0;visibility:hidden}
+.top .logo .logo-swap.shown{visibility:visible;z-index:2}
+.top .logo img.wave-in{visibility:visible;z-index:3;-webkit-mask:var(--wave) no-repeat;mask:var(--wave) no-repeat;-webkit-mask-size:300% 100%;mask-size:300% 100%;animation:logo-wave .8s cubic-bezier(.6,0,.25,1) both}
+@keyframes logo-wave{from{-webkit-mask-position:100% 0;mask-position:100% 0}to{-webkit-mask-position:0 0;mask-position:0 0}}
+/* With each wave a silver band of light sweeps the letters (DL-105). The logo no longer springs up (Fahad 2026-10-05,
+   DL-106: "I dont like how its expanding") */
+.top .logo::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;-webkit-mask:url(media/logo/vela-logo.svg) center/100% 100% no-repeat;mask:url(media/logo/vela-logo.svg) center/100% 100% no-repeat;background:linear-gradient(100deg,transparent 0 38%,rgba(255,255,255,.95) 50%,transparent 62% 100%) 100% 0/300% 100% no-repeat}
+.top .logo.pop::after{animation:logo-sheen .85s cubic-bezier(.5,0,.3,1) both}
+@keyframes logo-sheen{0%{opacity:1;background-position:100% 0}85%{opacity:1}100%{opacity:0;background-position:0 0}}
+/* The logo never turns white, not even over the film's dark opening clip (Fahad 2026-10-05, DL-108, replaces DL-107). */
+.top .row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gut)}
+.top .row > *{pointer-events:auto}
+.top nav{display:flex;gap:4px;padding:5px;border-radius:999px;transition:background .35s,box-shadow .35s,backdrop-filter .35s}
+.top.up nav{background:rgba(255,255,255,.78);backdrop-filter:blur(14px);box-shadow:0 6px 24px -12px rgba(17,17,17,.25)}
+.top nav a{font-weight:500;font-size:16px;text-decoration:none;color:var(--ink);padding:9px 14px;border-radius:999px;transition:background .2s}
+.top nav a:hover{background:rgba(17,17,17,.06)}
+.top .cta{justify-self:end;padding:13px 20px;font-size:16px}
+.top .logo{justify-self:start}
+
+/* HERO: full screen, edge-to-edge film, huge centred serif (Neko). Film: the DL-072 montage, looped whole (Fahad 2026-10-04).
+   The film's class is "film", never a name a later section uses ("intro" gave it 187px of top padding, a pale band) */
+.hero{position:relative;overflow:hidden;height:100svh;min-height:620px;background:#e9e1d6;isolation:isolate}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;padding:0;border:0}
+/* Seamless replay (DL-165, Fahad 2026-10-29: "when the video ends and replays, it's not smooth"): two copies of the film
+   take turns; the next one fades in over the last second, so the end melts into the start with no cut or stall. */
+.hero .poster{z-index:-3}
+.hero video.film{z-index:-2;transition:opacity 1s ease}
+.hero video.film.off{opacity:0}
+.hero video.film.top{z-index:-1}
+
+/* Heading and its one button sit left, on the same edge as the logo (Fahad 2026-10-04, DL-099) */
+.hero-copy{position:absolute;z-index:2;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:120px var(--gut) 150px;text-align:left}
+.hero .h1{max-width:12.5ch;animation:rise 1.2s cubic-bezier(.2,.7,.2,1) both .15s}
+/* DL-124 (Fahad 2026-10-27, after sierra.ai): the heading is set type again, white, two short lines, on a soft dark shade
+   over the film so it reads on every frame; the button is Sierra's pale pill. Replaces the calligraphy lettering (DL-112/120). */
+.hero .h1-sierra{max-width:none;color:#fff;font-weight:400;font-size:clamp(36px,4.3vw,66px);line-height:1.04;letter-spacing:-.025em;text-wrap:initial;text-shadow:0 2px 30px rgba(0,0,0,.18)}
+.h1-sierra span{display:block}
+/* DL-124 follow-up (Fahad 2026-10-27): the shade comes in, then the lines one after another, then the button */
+.hero .h1-sierra{animation:none}
+/* DL-156 (Fahad 2026-10-29: "make it appear more shadingly"): each line shades in out of a soft blur, slowly, instead of rising */
+.h1-sierra > span{animation:shade-in 2s cubic-bezier(.25,.6,.3,1) both .35s;will-change:opacity,filter}
+.h1-sierra > span + span{animation-delay:1.25s}
+.hero .hero-go{animation:shade-in 1.6s cubic-bezier(.25,.6,.3,1) both 2.2s}
+/* Fahad 2026-10-29: "more subtle": a light blur (6px, was 18px), no movement */
+@keyframes shade-in{from{opacity:0;filter:blur(6px)}to{opacity:1;filter:blur(0)}}
+/* Fahad 2026-10-28: heading smaller and down in the bottom-left corner; the shade is a little deeper along the bottom */
+.hero-copy{justify-content:flex-end;padding-bottom:clamp(56px,9vh,104px)}
+.hero .hero-go{margin-top:clamp(18px,2.6vh,28px)}
+.hero::before{animation:shade 1.4s ease both}
+@keyframes shade{from{opacity:0}to{opacity:1}}
+.h1-sierra .pk{font-style:normal;color:inherit}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  linear-gradient(90deg,rgba(14,12,12,.46) 0%,rgba(14,12,12,.30) 38%,rgba(14,12,12,.08) 70%,rgba(14,12,12,0) 100%),
+  linear-gradient(to top,rgba(14,12,12,.40) 0%,rgba(14,12,12,0) 50%);
+  -webkit-mask:linear-gradient(to bottom,transparent 0,transparent 120px,#000 260px);mask:linear-gradient(to bottom,transparent 0,transparent 120px,#000 260px)}
+.btn-pale{background:#f6f3ef;color:var(--ink);font-size:18px;padding:17px 30px}
+.btn-pale:hover{background:var(--rasp);color:#fff}
+.hero-go{margin-top:clamp(24px,3.6vh,38px);animation:rise 1.2s cubic-bezier(.2,.7,.2,1) both .35s}
+.vid-toggle{position:absolute;z-index:3;right:20px;bottom:20px;background:rgba(255,255,255,.6);backdrop-filter:blur(8px);color:var(--ink);border:0;border-radius:999px;font:500 13px var(--sans);padding:8px 12px;cursor:pointer}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* WHAT WE DO: pale ground, centred title, white rounded rows that open (Neko "Introducing") */
+.ground{background:linear-gradient(180deg,var(--blush) 0,var(--linen) 420px,var(--linen) 100%)}
+.intro{padding-top:var(--gap)}
+.intro .lede{margin-top:22px}
+.plus{width:28px;height:28px;position:relative}
+.plus::before,.plus::after{content:"";position:absolute;left:7px;right:7px;top:13px;height:1.5px;background:var(--ink);transition:transform .35s ease}
+.plus::after{transform:rotate(90deg)}
+/* What we do as a Stripe-style bento, option D (Fahad 2026-10-04, DL-086; picked from the board
+   rounds/2026-10-04 what we do as tiles/, with C kept on the shortlist). Tiles of two sizes on a 12-column grid with faint
+   dashed guide lines: Enquiries and Bookings across the top (7 + 5), the other three below (4 + 4 + 4). Each tile = the
+   job's label and line and an abstract drawing of the job, built in code, gently looping (still for reduced motion); the
+   drawings are placeholders for Higgsfield loops. A tap opens the job's example in a window (the live front desk included). */
+.intro{overflow-x:clip}
+.g-wrap{position:relative;max-width:1144px;margin:clamp(44px,5vw,64px) auto 0}
+.g-guides{position:absolute;inset:-40px 0;pointer-events:none;border-left:1px dashed #e4d9cf;border-right:1px dashed #e4d9cf}
+.g-guides::before,.g-guides::after{content:"";position:absolute;left:-100vw;right:-100vw;border-top:1px dashed #e4d9cf}
+.g-guides::before{top:40px} .g-guides::after{bottom:40px}
+.g-grid{position:relative;display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(330px,auto);gap:16px;list-style:none;text-align:left}
+.g-grid li:nth-child(1){grid-column:span 7} .g-grid li:nth-child(2){grid-column:span 5}
+.g-grid li:nth-child(n+3){grid-column:span 4}
+.g-tile{position:relative;display:flex;flex-direction:column;width:100%;height:100%;text-align:left;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:26px 26px 0;cursor:pointer;overflow:hidden;transition:box-shadow .3s,transform .3s}
+.g-tile:hover{box-shadow:0 18px 40px -26px rgba(17,17,17,.4);transform:translateY(-2px)}
+.g-text{display:block;padding-right:44px}
+.g-lab{display:block;font:600 12.5px/1.2 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--rasp)}
+.g-ln{display:block;margin-top:8px;font:500 clamp(20px,1.9vw,25px)/1.22 var(--sans);letter-spacing:-.01em;color:var(--ink);max-width:22rem}
+/* Fahad 2026-10-29: the Systems tile heading on one line (lets it use the tile width; still wraps on narrow screens) */
+.g-ui .g-ln{max-width:none}
+.g-plus{position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink);transition:background .2s,color .2s,border-color .2s}
+.g-plus svg{width:12px;height:12px}
+.g-tile:hover .g-plus{background:var(--rasp);border-color:var(--rasp);color:#fff}
+.g-art{flex:1;min-height:150px;display:grid;place-items:center;padding:14px 0 22px}
+.g-art svg{width:100%;max-width:460px;height:auto;display:block}
+.art .soft{fill:#f2eee9} .art .soft2{fill:#e7ddd3} .art .pk{fill:#fbe7ef} .art .wbar{fill:#fff;opacity:.85}
+.art .gline{stroke:#e9c9d6;stroke-width:2.5;fill:none}
+@keyframes g-rise{0%,6%{opacity:0;transform:translateY(14px)}14%,86%{opacity:1;transform:none}96%,100%{opacity:0;transform:none}}
+.art-enq .m{opacity:0;transform-box:fill-box;animation:g-rise 7s ease infinite}
+.art-enq .m2{animation-delay:.9s} .art-enq .m3{animation-delay:2.1s} .art-enq .m4{animation-delay:3s}
+@keyframes g-blip{0%,100%{opacity:.25}50%{opacity:1}}
+.art-enq .dot{animation:g-blip 1.2s ease infinite} .art-enq .dot:nth-child(3){animation-delay:.2s} .art-enq .dot:nth-child(4){animation-delay:.4s}
+@keyframes g-scan{0%{transform:translateX(0)}60%,100%{transform:translateX(200px)}}
+.art-book .scan{animation:g-scan 5s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes g-lit{0%,55%{fill:#f2eee9}62%,100%{fill:url(#gOut)}}
+.art-book .hit{animation:g-lit 5s ease infinite}
+@keyframes g-ring{0%,60%{opacity:0;transform:scale(.6)}70%{opacity:1}100%{opacity:0;transform:scale(1.7)}}
+.art-book .ring{transform-box:fill-box;transform-origin:center;animation:g-ring 5s ease-out infinite}
+@keyframes g-tick{0%,62%{stroke-dashoffset:30}72%,100%{stroke-dashoffset:0}}
+.art-book .tick{stroke-dasharray:30;animation:g-tick 5s ease infinite}
+@keyframes g-node{0%,100%{fill:#f2eee9}30%,85%{fill:#e2648f}}
+.art-fol .n2{animation:g-node 6s ease infinite 1.6s} .art-fol .n3{animation:g-node 6s ease infinite 3.2s} .art-fol .n4{animation:g-node 6s ease infinite 4.8s}
+@keyframes g-file{0%,8%{transform:translateY(-46px);opacity:0}20%{opacity:1}45%,100%{transform:translateY(34px);opacity:0}}
+.art-adm .sheet{animation:g-file 4.5s cubic-bezier(.5,0,.3,1) infinite} .art-adm .s2{animation-delay:1.5s} .art-adm .s3{animation-delay:3s}
+@keyframes g-spin{to{transform:rotate(360deg)}}
+.art-mkt .orb{transform-origin:290px 110px;animation:g-spin 16s linear infinite} .art-mkt .orb2{animation-duration:24s;animation-direction:reverse}
+@keyframes g-in{0%{transform:translate(0,0);opacity:0}15%{opacity:1}75%{opacity:1}100%{transform:var(--to);opacity:0}}
+.art-mkt .inw{animation:g-in 4s ease-in infinite} .art-mkt .i2{animation-delay:1.3s} .art-mkt .i3{animation-delay:2.6s}
+/* What we do, two pillars (Fahad 2026-10-04, DL-090): AI systems and Marketing, each a tile that links to its page. The five
+   specific automations moved to the Broker Desk system page with their drawings, examples and the live front desk. */
+.g-two{grid-auto-rows:minmax(460px,auto)}
+a.g-tile{text-decoration:none;color:inherit}
+.g-body{display:block;margin-top:14px;font-size:17px;line-height:1.55;color:var(--body);max-width:32rem}
+.g-go{display:block;padding:0 0 26px;font:500 16px var(--sans);color:var(--ink)}
+.g-go::after{content:"  \2192"}
+a.g-tile:hover .g-go{color:var(--rasp)}
+/* The AI systems tile holds working buttons (the editor), so it is a card with one real link, "See our systems", stretched over
+   it; the editor sits above that link and keeps its own clicks. */
+a.g-go{text-decoration:none}
+.g-ui a.g-go::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:1}
+.g-ui:hover .g-go{color:var(--rasp)}
+.g-ui .n8{z-index:2}
+/* What we do, AI systems tile: the job as a workflow-editor screen (Fahad 2026-10-04: "include n8n screen and colours so it
+   looks like the workflow was created there instead of pink"; board rounds/2026-10-04 workflow demos/editor.html). The DL-095
+   job (one website enquiry, every branch) drawn in the style of n8n's editor: dotted canvas, white nodes with coloured icons,
+   trigger bolt, AI agent with its model and tool, a switch with named outputs, green ticks and "1 item" on each wire, the coral
+   Execute workflow button, a success message, then fit-to-view. The look only: no n8n name or logo (Vela's engine is Azure
+   Functions). Light theme (Fahad picked it over dark, DL-096). Zoom in, zoom out, full screen (a dialog over a pale veil, like the film) and Execute workflow (runs it again) all work. State classes carry an n8 prefix so the
+   page's own .busy/.done rules can't reach them. */
+.n8-art{place-items:stretch;padding:26px 0 26px}
+.g-art .n8 svg{max-width:none}
+.n8{--cv:#f5f5f7;--dot:#cfd0d6;--bar:#fff;--barline:#e4e4e9;--nd:#fff;--ndb:#cdced5;--tx:#2b2b31;--tx2:#8a8a94;--edge:#b5b6bf;--ok:#29a568;--pri:#ff6d5a;--chip:#efeff2;
+  position:relative;display:block;width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--barline);background:var(--cv);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;container-type:inline-size;-webkit-font-smoothing:antialiased}
+.n8-top{height:42px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 12px;background:var(--bar);border-bottom:1px solid var(--barline);font-size:12.5px;color:var(--tx)}
+.n8-crumb{display:flex;gap:6px;align-items:center;white-space:nowrap;min-width:0} .n8-crumb span{color:var(--tx2)} .n8-crumb b{font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.n8-tabs{display:flex;background:var(--chip);border-radius:6px;padding:2px;font-size:12px}
+.n8-tabs button{font-size:12px;border:0;background:none;padding:4px 10px;border-radius:5px;color:var(--tx2);transition:background .2s,color .2s,box-shadow .2s}
+.n8-tabs button:hover{color:var(--tx)}
+.n8-tabs button.n8o{background:var(--bar);color:var(--tx);box-shadow:0 1px 2px rgba(0,0,0,.1)}
+/* DL-158 (Fahad 2026-10-29): Editor / Executions, Saved and the plus sign work too */
+.n8-saved{display:inline-flex;align-items:center;gap:5px;border:0;background:none;font-size:12.5px;color:var(--tx2);padding:3px 6px;margin:0 -6px;border-radius:5px;transition:background .2s,color .2s}
+.n8-saved:hover{background:var(--chip);color:var(--tx)}
+.n8-saved .n8sp{width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(0,0,0,.15);border-top-color:var(--tx2);animation:n8spin .8s linear infinite}
+.n8-saved.n8dn{color:var(--ok)} .n8-saved svg{width:12px;height:12px}
+.n8-top button:focus-visible,.n8-plus:focus-visible,.n8-xs button:focus-visible,.n8-np button:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+/* Executions: the list of past runs over the canvas; a row opens the run again in the editor */
+.n8-xs{position:absolute;inset:0;z-index:5;background:var(--bar);display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.n8-xs.n8o{opacity:1;visibility:visible}
+.n8-xs-h{display:flex;justify-content:space-between;align-items:center;padding:12px 16px 6px;font-size:12.5px;font-weight:600;color:var(--tx)}
+.n8-xs-h span{font-weight:400;font-size:11px;color:var(--tx2);border:1px solid var(--barline);border-radius:999px;padding:3px 8px}
+.n8-xs ol{list-style:none;margin:0;padding:0 8px 10px;overflow:auto;flex:1}
+.n8-xs li button{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:left;border:0;border-bottom:1px solid var(--barline);background:none;padding:8px;font-size:12px;color:var(--tx);border-radius:0;transition:background .2s}
+.n8-xs li:last-child button{border-bottom:0}
+.n8-xs li button:hover{background:var(--cv);border-radius:6px}
+.n8-xs-ok{display:grid;color:var(--ok)} .n8-xs-ok svg{width:15px;height:15px}
+.n8-xs b{display:block;font-weight:500}
+.n8-xs small{display:block;font-size:11px;color:var(--tx2);margin-top:1px} .n8-xs small em{font-style:normal;color:var(--ok)}
+.n8-xs-id{font-size:11px;color:var(--tx2)}
+.n8-xs li button:hover .n8-xs-id::after{content:" · View";color:var(--pri)}
+.n8-xs li.n8new{animation:n8pop .45s ease}
+/* Plus: the "What happens next?" panel slides in from the right; the search filters it */
+.n8-plus{padding:0;cursor:pointer;transition:border-color .2s}
+.n8-plus:hover{border-color:var(--tx2)}
+.n8-np{position:absolute;top:0;right:0;bottom:0;width:min(272px,80%);z-index:6;background:var(--bar);border-left:1px solid var(--barline);box-shadow:-12px 0 24px -14px rgba(0,0,0,.22);display:flex;flex-direction:column;transform:translateX(104%);visibility:hidden;transition:transform .32s cubic-bezier(.2,.7,.2,1),visibility .32s}
+.n8-np.n8o{transform:none;visibility:visible}
+.n8-np-h{display:flex;justify-content:space-between;align-items:center;padding:12px 12px 8px 14px;font-size:13px;font-weight:600;color:var(--tx)}
+.n8-np-x{width:24px;height:24px;padding:0;border:0;background:none;border-radius:5px;color:var(--tx2);display:grid;place-items:center}
+.n8-np-x:hover{background:var(--chip);color:var(--tx)} .n8-np-x svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.n8-np input{margin:0 12px 6px;padding:7px 10px;border:1px solid var(--barline);border-radius:6px;font:inherit;font-size:12px;color:var(--tx);background:var(--bar);outline:0}
+.n8-np input:focus{border-color:var(--pri);box-shadow:0 0 0 3px rgba(255,109,90,.14)}
+.n8-np ul{list-style:none;margin:0;padding:2px 6px 8px;overflow:auto;flex:1}
+.n8-np li button{width:100%;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;text-align:left;border:0;background:none;padding:7px 8px;border-radius:6px;color:var(--tx);transition:background .2s}
+.n8-np li button:hover,.n8-np li button.n8o{background:var(--cv)}
+.n8-np li i{width:30px;height:30px;border-radius:6px;border:1px solid var(--barline);display:grid;place-items:center}
+.n8-np li i svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.n8-np li b{display:block;font-size:12px;font-weight:600}
+.n8-np li small{display:block;font-size:10.5px;color:var(--tx2);margin-top:1px;line-height:1.35}
+.n8-np-none{padding:10px 8px;font-size:11.5px;color:var(--tx2)}
+.n8-right{display:flex;gap:10px;align-items:center;color:var(--tx2);white-space:nowrap}
+.n8-tg{width:28px;height:16px;border-radius:9px;background:var(--ok);position:relative;flex:none;transition:background .25s}
+.n8-tg::after{content:"";position:absolute;right:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15);transition:transform .25s cubic-bezier(.3,1.3,.5,1)}
+/* DL-159 (Fahad 2026-10-29): Active is a working switch; off, the workflow waits until Execute workflow is pressed */
+.n8-act{display:inline-flex;align-items:center;gap:10px;border:0;background:none;padding:2px 0;font-size:12.5px;color:var(--tx2);transition:color .2s}
+.n8-act:hover{color:var(--tx)}
+.n8-act[aria-checked="false"] .n8-tg{background:#c9cad1}
+.n8-act[aria-checked="false"] .n8-tg::after{transform:translateX(-12px)}
+.n8-btn{border:1px solid var(--barline);border-radius:6px;padding:4px 10px;color:var(--tx)}
+.n8-cv{position:relative;display:block;height:318px;overflow:hidden;background-image:radial-gradient(var(--dot) 1.1px,transparent 1.4px);background-size:20px 20px}
+.n8-world{position:absolute;display:block;left:0;top:0;width:1470px;height:570px;transform-origin:0 0;will-change:transform}
+.n8-world>svg{position:absolute;left:0;top:0;width:1470px;height:570px;overflow:visible}
+.n8-e{fill:none;stroke:var(--edge);stroke-width:2}
+.n8-e.sub{stroke-dasharray:5 5}
+.n8-g{fill:none;stroke:var(--ok);stroke-width:2.4;stroke-linecap:round;opacity:0;transition:opacity .4s}
+.n8-g.n8o{opacity:1;transition:none}
+.n8-items{position:absolute;font-size:11px;font-weight:600;color:var(--ok);background:var(--cv);padding:0 4px;border-radius:3px;opacity:0;transform:translate(-50%,-50%);transition:opacity .3s;white-space:nowrap}
+.n8-items.n8o{opacity:1}
+.n8-nd{position:absolute;display:block}
+.n8-box{position:relative;width:92px;height:92px;border-radius:9px;background:var(--nd);border:2px solid var(--ndb);display:grid;place-items:center;transition:border-color .25s,box-shadow .25s}
+.n8-box.trig{border-radius:46px 9px 9px 46px}
+.n8-box.wide{width:196px;display:flex;align-items:center;gap:12px;padding:0 16px}
+.n8-box.circ{width:64px;height:64px;border-radius:50%}
+.n8-box.wide b{display:block;font-size:13px;font-weight:600;color:var(--tx);white-space:nowrap}
+.n8-box.wide small{display:block;font-size:11px;color:var(--tx2);margin-top:3px}
+.n8-ic{display:grid;place-items:center;width:40px;height:40px;transition:opacity .2s}
+.n8-ic svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.n8-box.circ .n8-ic svg{width:26px;height:26px}
+.n8-in{position:absolute;left:-5px;top:50%;width:6px;height:14px;margin-top:-7px;border-radius:2px;background:var(--edge)}
+.n8-out{position:absolute;right:-6px;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--edge)}
+.n8-bolt{position:absolute;left:-24px;top:50%;margin-top:-9px;color:var(--pri)} .n8-bolt svg{width:18px;height:18px;fill:currentColor}
+.n8-ol{position:absolute;left:100px;font-size:10.5px;color:var(--tx2);white-space:nowrap;transform:translateY(-130%)}
+.n8-port{position:absolute;bottom:-6px;width:10px;height:10px;margin-left:-5px;transform:rotate(45deg);background:var(--edge)}
+.n8-pl{position:absolute;top:100px;font-size:10.5px;color:var(--tx2);white-space:nowrap;transform:translateX(-50%)}
+.n8-lb{position:absolute;left:50%;top:100px;transform:translateX(-50%);text-align:center;width:160px}
+.n8-box.circ+.n8-lb{top:72px}
+.n8-lb b{display:block;font-size:12.5px;font-weight:600;color:var(--tx)}
+.n8-lb small{display:block;font-size:11px;color:var(--tx2);margin-top:2px}
+.n8-ok{position:absolute;right:5px;bottom:5px;width:16px;height:16px;color:var(--ok);opacity:0;transform:scale(.5);transition:opacity .2s,transform .35s cubic-bezier(.3,1.6,.5,1)}
+.n8-ok svg{width:16px;height:16px}
+.n8-box.circ .n8-ok{right:-2px;bottom:-2px}
+.n8-spin{position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:3px solid rgba(255,109,90,.22);border-top-color:var(--pri);animation:n8spin .8s linear infinite;opacity:0}
+@keyframes n8spin{to{transform:rotate(360deg)}}
+.n8-box.wide .n8-spin{left:36px}
+.n8-nd.n8r .n8-box{border-color:var(--pri);box-shadow:0 0 0 4px rgba(255,109,90,.16)}
+.n8-nd.n8r .n8-ic{opacity:.2} .n8-nd.n8r .n8-spin{opacity:1}
+.n8-nd.n8k .n8-box{border-color:var(--ok)} .n8-nd.n8k .n8-ok{opacity:1;transform:none}
+.n8-lb small.n8s{animation:n8pop .35s ease}
+@keyframes n8pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.n8-zoom{position:absolute;left:12px;bottom:12px;display:flex;gap:6px}
+.n8 button{font-family:inherit;line-height:normal;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.n8-zoom button{width:28px;height:28px;padding:0;border:1px solid var(--barline);border-radius:6px;background:var(--bar);display:grid;place-items:center;color:var(--tx);transition:border-color .2s,box-shadow .2s}
+.n8-zoom button:hover{border-color:var(--tx2)}
+.n8-zoom button.n8o{border-color:var(--pri);box-shadow:0 0 0 3px rgba(255,109,90,.18)}
+.n8-zoom button:focus-visible,.n8-run:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+.n8-zoom svg,.n8-plus svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.n8-run{border:0;position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;align-items:center;gap:7px;background:var(--pri);color:#fff;font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:7px;box-shadow:0 6px 14px -6px rgba(255,109,90,.7);white-space:nowrap;transition:background .2s,transform .15s}
+.n8-run:hover{background:#ff5a45}
+.n8-run svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.n8-run .n8sp{width:13px;height:13px;border-radius:50%;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:n8spin .8s linear infinite}
+.n8-run.n8b{background:#ff8f80}
+.n8-run.n8p{transform:translateX(-50%) scale(.95)}
+.n8-plus{position:absolute;right:12px;top:12px;width:32px;height:32px;border:1px solid var(--barline);border-radius:7px;background:var(--bar);display:grid;place-items:center;color:var(--tx)}
+.n8-toast{position:absolute;right:12px;top:54px;display:flex;gap:8px;align-items:center;background:var(--bar);border:1px solid var(--barline);border-left:3px solid var(--ok);border-radius:7px;padding:8px 12px;font-size:12px;font-weight:500;color:var(--tx);box-shadow:0 10px 24px -12px rgba(0,0,0,.35);opacity:0;transform:translateX(14px);transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.2,1);white-space:nowrap}
+.n8-toast svg{width:15px;height:15px;color:var(--ok)}
+.n8-toast.n8o{opacity:1;transform:none}
+.n8-ex{position:absolute;right:12px;bottom:14px;font:600 9.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);border:1px solid var(--barline);background:var(--bar);padding:5px 7px;border-radius:999px}
+@container (max-width:500px){ .n8-tabs,.n8-btn,.n8-saved,.n8-crumb span{display:none} .n8-run{left:auto;right:12px;transform:none} .n8-run.n8p{transform:scale(.95)} .n8-ex{display:none} }
+.n8-dlg{border:0;padding:0;background:transparent;width:min(1120px,calc(100vw - 32px));max-width:none;max-height:none;margin:auto;overflow:visible}
+.n8-dlg[open]{animation:n8in .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes n8in{from{opacity:0;transform:scale(.97)}}
+.n8-dlg::backdrop{background:rgba(254,250,251,.9);backdrop-filter:blur(10px)}
+.n8-dlg .n8{box-shadow:var(--shadow)}
+.n8-big .n8-cv{height:min(640px,calc(100vh - 170px))}
+.n8-x{position:absolute;right:0;bottom:calc(100% + 12px);border:1px solid var(--line);background:var(--white);color:var(--ink);border-radius:999px;font:500 15px var(--sans);padding:8px 16px;cursor:pointer}
+html.n8-lock{overflow:hidden}
+@media (prefers-reduced-motion:reduce){ .n8-spin,.n8-run .n8sp,.n8-saved .n8sp{animation:none} .n8-np,.n8-xs{transition:none} .n8-dlg[open]{animation:none} }
+@keyframes g-bob{0%,30%,100%{transform:none}12%{transform:translateY(-6px)}}
+/* The example window: one pane per job (moved verbatim from the rows) */
+.wd-dlg{border:0;padding:0;background:transparent;width:min(600px,calc(100vw - 32px));max-width:none;margin:auto;overflow:visible}
+.wd-dlg::backdrop{background:rgba(254,250,251,.9);backdrop-filter:blur(10px)}
+.wd-dlg-in{background:var(--white);border-radius:20px;padding:10px 10px 20px;box-shadow:var(--shadow);text-align:left;max-height:calc(100vh - 120px);overflow:auto}
+.wd-pane .g-lab{margin:12px 12px 10px}
+.wd-pane .wd-vis{margin:0}
+.wd-pane p{padding:14px 14px 0;font-size:17px;color:var(--body)}
+.wd-dlg-x{position:absolute;right:0;bottom:calc(100% + 12px);border:1px solid var(--line);background:var(--white);color:var(--ink);border-radius:999px;font:500 15px var(--sans);padding:8px 16px;cursor:pointer}
+.wd-vis{position:relative;margin:4px 10px 0;border-radius:14px;background:radial-gradient(120% 100% at 30% 0%,#fff 0%,#fcf0f5 45%,#f4e2ea 100%);padding:44px 24px 30px;display:grid;place-items:center;min-height:250px}
+.wd-ex{position:absolute;left:12px;top:12px;font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:rgba(255,255,255,.8);padding:5px 8px;border-radius:999px}
+.wd-mini{width:min(100%,360px);background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:14px;display:grid;gap:9px;font-size:14.5px;line-height:1.4;text-align:left;color:var(--ink)}
+.wd-h{font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding-bottom:9px;border-bottom:1px solid var(--line)}
+.wd-bub{max-width:82%;padding:9px 12px;border-radius:14px}
+.wd-bub.in{background:#f2eee9;border-bottom-left-radius:4px}
+.wd-bub.out{background:var(--rasp-soft);justify-self:end;border-bottom-right-radius:4px}
+.wd-meta{font-size:12.5px;color:var(--mute);justify-self:end}
+.wd-days{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;text-align:center;font-size:12px;color:var(--mute)}
+.wd-days i{display:block;height:34px;border-radius:8px;background:#f2eee9;margin-top:5px}
+.wd-days i.on{background:var(--rasp);box-shadow:0 0 0 3px var(--rasp-soft)}
+.wd-li{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:10px;background:#f8f5f1}
+.wd-li em{font-style:normal;color:var(--rasp);font-weight:600;font-size:13px;white-space:nowrap}
+
+.intro .go{display:flex;justify-content:center;margin-top:40px}
+
+/* WHO THIS IS FOR: short centred strip on the same ground (Neko "we're open") */
+.who{padding:var(--gap) 0}
+.who .lede{margin-top:16px;text-wrap:balance}
+.situations{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.5vw,28px);max-width:1200px;margin:clamp(40px,5vw,56px) auto 0;list-style:none;text-align:left}
+.situations li{font:400 clamp(21px,1.8vw,25px)/1.35 var(--head);color:var(--ink);padding-top:22px;border-top:1px solid #ddd5ca;display:grid;gap:14px;align-content:start}
+.situations li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--rasp)}
+@media (max-width:1100px){.situations{grid-template-columns:repeat(2,1fr);max-width:760px}} /* DL-114: four points, 2 x 2 on tablets */
+/* DL-119: Who it's for, four hairline columns (layout H) */
+.who-cols{display:grid;grid-template-columns:repeat(4,1fr);max-width:1200px;margin:clamp(44px,5vw,64px) auto 0;border-top:1px solid #ddd5ca;list-style:none;text-align:left}
+.who-cols li{padding:30px 26px 34px;border-right:1px solid #ddd5ca;transition:background .4s}
+.who-cols li:last-child{border-right:0}
+.who-cols li::before{content:"";display:block;width:24px;height:1.5px;background:var(--rasp);margin-bottom:22px;transition:width .45s}
+.who-cols li:hover{background:rgba(255,255,255,.55)}
+.who-cols li:hover::before{width:48px}
+.wc-t{font:400 26px/1.2 var(--head);letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+.nw{white-space:nowrap}
+.wc-l{margin-top:14px;font-size:16.5px;line-height:1.5;color:var(--body)}
+@media (max-width:1100px){.who-cols{grid-template-columns:1fr 1fr;max-width:760px}.who-cols li{border-bottom:1px solid #ddd5ca}.who-cols li:nth-child(2n){border-right:0}.who-cols li:nth-child(n+3){border-bottom:0}}
+@media (max-width:600px){.who-cols{grid-template-columns:1fr}.who-cols li{border-right:0;border-bottom:1px solid #ddd5ca;padding:26px 6px 28px}.who-cols li:last-child{border-bottom:0}.wc-t{font-size:24px}}
+.who .go{display:flex;justify-content:center;margin-top:44px}
+
+/* HOW IT WORKS, copied from nekohealth.com ("Cutting-edge technology meets first-class care"), measured 2026-10-04 at 1440x900:
+   a 440svh scroll runway with a pinned full-screen panel; the panel arrives as a card inset ~79px with ~43px corners and opens
+   to full screen as it pins; the image tile is flush to the left edge, full height, to the end of grid column 5 (600px at 1440),
+   right corners 48px; the next image slides up over the last; text column = grid columns 7-11 (x 726, 560 wide), centred;
+   title 68/80; tabs 16px uppercase regular, 48px apart, inactive at 50%; one 18/24 paragraph and its own link per tab;
+   link = 60px dark round button with a 24px arrow, 16px gap, 18px/500 label; tabs switch at 43% and 81% of the pinned scroll. */
+.how{position:relative;height:560svh} /* DL-116: four steps */
+.how-sticky{position:sticky;top:0;height:100svh;overflow:hidden}
+.how-card{--in:0px;--rad:0px;position:absolute;inset:0;background:var(--blush);clip-path:inset(0 var(--in) round var(--rad))}
+.stage{position:absolute;left:0;top:0;bottom:0;width:calc(40px + 5 * ((100% - 212px) / 12) + 48px);overflow:hidden;border-radius:0 48px 48px 0;background:var(--linen)}
+.panel{position:absolute;inset:0;transform:translateY(100%);transition:transform 1s cubic-bezier(.65,0,.25,1);pointer-events:none}
+.panel.on,.panel.past{transform:none}
+.panel.on{pointer-events:auto}
+#p0{z-index:1} #p1{z-index:2} #p2{z-index:3} #p3{z-index:4}
+.panel > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.panel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(254,250,251,0) 55%,rgba(254,250,251,.3) 100%);pointer-events:none}
+.ex{position:absolute;z-index:5;left:20px;top:92px;font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:rgba(255,255,255,.75);backdrop-filter:blur(8px);padding:7px 10px;border-radius:999px}
+.how-text{position:absolute;top:0;bottom:0;left:calc(40px + 6 * ((100% - 212px) / 12 + 12px));width:calc(5 * ((100% - 212px) / 12) + 48px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.how .h2{font-size:68px;line-height:80px}
+.tabs{display:flex;flex-wrap:wrap;gap:12px 36px;margin:40px 0 0;list-style:none}
+.tabs button{background:none;border:0;padding:0;font:400 16px/24px var(--sans);text-transform:uppercase;color:var(--ink);opacity:.5;cursor:pointer;transition:opacity .3s}
+.tabs button[aria-selected=true]{opacity:1}
+.copy{display:grid;margin-top:40px;width:100%}
+.copy > div{grid-area:1/1;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;visibility:hidden}
+.copy > div.on{opacity:1;transform:none;visibility:visible;transition-delay:.1s}
+.copy p{font-size:18px;line-height:24px;color:var(--ink)}
+.arrow-link{display:inline-flex;align-items:center;gap:16px;margin-top:32px;font:500 18px/24px var(--sans);text-decoration:none;color:var(--ink)}
+.arrow-link i{width:60px;height:60px;border-radius:29px;background:var(--ink);display:grid;place-items:center;transition:background .25s}
+.arrow-link svg{width:24px;height:24px;stroke:#fff;stroke-width:2;fill:none}
+.arrow-link:hover i{background:var(--rasp)}
+
+
+/* The front desk: the live example inside the Enquiries row (moved off the Build photo, Fahad 2026-10-04). The visitor
+   taps a message and watches it get answered and booked. */
+.desk{width:min(100%,400px);background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:16px 16px 12px;color:var(--ink);text-align:left}
+/* Framing keeps each photo's faces in view when the tile is wider than 2:3 (short laptops, tablets, phones) */
+#p0 > img{object-position:50% 60%}
+#p1 > img{object-position:66% 50%} /* C8, Pexels 3861970 (Fahad 2026-10-28): keeps her hand and face in the tall frame */
+#p2 > img{object-position:62% 40%} /* I10, Pexels 6248729 (Fahad 2026-10-28): both faces in the tall frame */
+#p3 > img{object-position:50% 20%}
+.desk-head{display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:600;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.desk-head .agent{display:flex;align-items:center;gap:9px}
+.orb{width:10px;height:10px;border-radius:50%;background:var(--rasp);position:relative;flex:0 0 10px}
+.orb::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid var(--rasp);opacity:0}
+.busy .orb::after{animation:breathe 1.6s ease-out infinite}
+@keyframes breathe{0%{transform:scale(.6);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+.state{font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#5b5852;background:#f2eee8;padding:5px 9px;border-radius:999px;transition:background .3s,color .3s}
+.state.work{color:var(--rasp);background:var(--rasp-soft)}
+.state.ok{color:#2f7a4b;background:#e5f4ea}
+.feed{height:250px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;overflow:hidden;padding:10px 0 8px;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 40px);mask-image:linear-gradient(180deg,transparent 0,#000 40px)}
+.b{max-width:86%;padding:9px 12px;border-radius:12px;font-size:14.5px;line-height:1.4;animation:pop .45s ease both}
+.b .m{display:block;font:500 12px/1.4 var(--sans);color:var(--mute);margin-bottom:2px}
+.b.in{align-self:flex-start;background:#f2eee8;border-bottom-left-radius:4px}
+.b.out{align-self:flex-end;background:var(--rasp-soft);border-bottom-right-radius:4px}
+.b.out .m{color:var(--rasp)}
+.b.sys{align-self:center;background:none;padding:2px 0;font:600 11px/1.4 var(--sans);letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+.caret{display:inline-block;width:2px;height:1em;background:var(--rasp);margin-left:1px;vertical-align:-2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.think{align-self:flex-start;font-size:14px;font-weight:600;padding:4px 2px;
+  background:linear-gradient(90deg,#8b8780 0%,#8b8780 35%,var(--rasp) 50%,#8b8780 65%,#8b8780 100%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:pop .35s ease both,shimmer 1.6s linear infinite}
+@keyframes shimmer{from{background-position:100% 0}to{background-position:-150% 0}}
+.done{align-self:stretch;display:grid;gap:6px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;animation:pop .45s ease both}
+.done div{display:flex;gap:10px;align-items:center;font-size:14.5px;font-weight:600;color:var(--ink)}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tick{width:18px;height:18px;border-radius:50%;background:#e5f4ea;position:relative;flex:0 0 18px}
+.tick::after{content:"";position:absolute;left:6px;top:3px;width:4px;height:8px;border:solid #2f7a4b;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.desk-try{display:flex;flex-wrap:wrap;gap:8px;padding-top:11px;border-top:1px solid var(--line)}
+.desk-try span{flex-basis:100%;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}
+.desk-try button{font:500 14px/1 var(--sans);color:var(--rasp);background:var(--rasp-soft);border:0;border-radius:999px;padding:9px 13px;cursor:pointer;transition:background .2s,color .2s}
+.desk-try button:hover{background:#f7d3e1}
+.desk-try button[aria-pressed=true]{background:var(--rasp);color:#fff}
+
+/* The monthly note: under How we work (moved off the Run photo, Fahad 2026-10-04) */
+.note{max-width:430px;margin:clamp(48px,6vw,72px) auto 0;padding:22px 24px;background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);text-align:left;color:var(--ink)}
+.note header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}
+.note h4{font:400 22px/1.2 var(--head)}
+.note header span{font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.note dl{display:grid;gap:12px}
+.note dt{font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rasp);margin-bottom:5px}
+.note dd{font-size:15px;line-height:1.5;color:var(--body)}
+
+/* WHY AI: one calm statement */
+.why{padding:var(--gap) 0 0}
+.why .big{font:400 clamp(28px,3.1vw,44px)/1.28 var(--head);letter-spacing:-.015em;color:var(--ink);max-width:24em;margin:22px auto 0;text-wrap:pretty}
+
+/* LATEST NOTES (DL-089): three cards, a typographic cover (a word in the serif on the pale raspberry glow), date, title,
+   one line. Written by blog/build.py from blog/posts/*.md; drafts carry a Draft tag until Fahad approves them. */
+.notes-row{padding:0 0 var(--gap)}
+.nr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:clamp(40px,5vw,56px);list-style:none;text-align:left}
+/* DL-174 (Fahad, 2026-10-29, option A of the tiles board): the cards share their rows (CSS subgrid), so photo, title,
+   author, date and intro line up across the three cards whatever the title's length */
+.nr-grid > li{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0}
+.nr-card{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0;text-decoration:none;color:inherit;border-radius:var(--r-card);border:1px solid var(--line);background:var(--white);padding:10px 10px 24px;transition:box-shadow .3s,transform .3s}
+.nr-card:hover{box-shadow:0 18px 40px -26px rgba(17,17,17,.4);transform:translateY(-2px)}
+.nr-cover{aspect-ratio:16/10;border-radius:14px;display:grid;place-items:center;background:radial-gradient(120% 120% at 25% 15%,#fff 0%,#fdf1f6 42%,#f3dce6 100%);font:400 clamp(34px,3.4vw,48px)/1 var(--head);letter-spacing:-.02em;color:var(--ink)}
+.nr-photo{position:relative;overflow:hidden}
+.nr-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.nr-card:hover .nr-photo img{transform:scale(1.04)} /* DL-117 */
+.nr-meta{display:flex;gap:8px;align-items:center;margin:12px 14px 0;font-size:14px;color:var(--mute)}
+.nr-draft{font:600 10.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rasp);border:1px dashed var(--rasp);border-radius:999px;padding:4px 8px}
+.nr-title{margin:18px 14px 0;font:500 22px/1.25 var(--sans);letter-spacing:-.01em;color:var(--ink)}
+/* DL-173 (Fahad, 2026-10-29: "follow the Claim 3000 way where we have the author there as well with their picture"):
+   title, then the author's round portrait, name and role, then date and reading time, as on the Logs cards */
+.nr-by{display:flex;align-items:center;gap:12px;margin:16px 14px 0}
+.nr-by img{flex:none;width:40px;height:40px;object-fit:cover;background:#fff} /* DL-176: pencil sketch, uncropped */
+.nr-by b{display:block;font:600 15px/20px var(--sans);color:var(--ink)}
+.nr-role{display:block;font-size:14px;line-height:19px;color:var(--mute)}
+.nr-sum{margin:12px 14px 0;font-size:16.5px;color:var(--body)}
+.notes-row .go{display:flex;justify-content:center;margin-top:40px}
+/* HOW WE WORK (moved to its own page, DL-088; styles kept for that page): section spacing, then the tiles */
+.rules{padding:var(--gap) 0 0}
+/* HOW WE WORK as Neko photo tiles (Fahad 2026-10-04, DL-087: "lets add the tiles from neko health", the style of option C
+   on the What we do demo board; replaces the DL-084 picture tiles). Three tall photo tiles, the principle's sentence big in
+   the serif at the top and its name at the foot, like Neko's quote tiles; a white fade keeps the words readable. Static (no
+   example to open). On phones they become a swipeable row. Photos are stand-ins from the film's office until matched ones
+   are made (hww-checked.jpg is cut from the 480p draft, so it is softer). */
+.hw-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:clamp(44px,5vw,64px);list-style:none;text-align:left}
+.hw-tile{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:var(--linen);display:flex;flex-direction:column;padding:28px 26px 24px 30px}
+.hw-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hw-tile::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.82) 34%,rgba(255,255,255,0) 62%),linear-gradient(0deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,0) 26%)}
+.hw-line{position:relative;z-index:2;font:400 clamp(24px,2.3vw,32px)/1.16 var(--head);letter-spacing:-.01em;color:var(--ink)}
+.hw-tile h3{position:relative;z-index:2;margin-top:auto;padding-top:16px;font:600 17px/1.2 var(--sans);color:var(--ink)}
+.rules .go{display:flex;justify-content:center;margin-top:44px}
+
+/* QUESTIONS: centred accordion */
+.faq{padding:var(--gap) 0}
+.qs{max-width:820px;margin:clamp(40px,5vw,56px) auto 0;list-style:none;border-top:1px solid var(--line)}
+.qs li{border-bottom:1px solid var(--line)}
+.qs{text-align:left}
+.qs button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;background:none;border:0;padding:22px 2px;text-align:left;font:500 19px/1.35 var(--sans);color:var(--ink);cursor:pointer}
+.qs li.open .plus::after{transform:rotate(0)}
+.qs .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.qs li.open .more{grid-template-rows:1fr}
+.qs .more > div{overflow:hidden}
+.qs .more p{padding:0 48px 24px 2px;font-size:17px;color:var(--body)}
+
+/* LET'S HAVE A CONVERSATION: rounded pale frame closing the page; the form lives on contact.html (Fahad 2026-10-04) */
+.talk{margin:0 12px;border-radius:var(--r-frame);background:linear-gradient(160deg,var(--linen) 0%,var(--linen-2) 100%);padding:clamp(88px,12vw,168px) 0;text-align:center}
+.talk .lede{margin:22px auto 0;color:var(--body)}
+.talk .go{display:flex;justify-content:center;margin-top:40px}
+
+/* Footer */
+footer{padding:72px 0 40px;font-size:16px}
+footer .top-row{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;align-items:start}
+footer .tag{margin-top:16px;color:var(--mute);max-width:22rem}
+footer h4{font:600 13px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer ul a{text-decoration:none;color:var(--body)}
+footer ul a:hover{text-decoration:underline;text-underline-offset:4px}
+.legal{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px;margin-top:56px;color:var(--mute);font-size:14px}
+
+/* Reveal: short rise, no blur; items arrive one at a time */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:1100px){
+  .top nav a{padding:9px 10px}
+}
+@media (max-width:900px){
+  .hw-tiles{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(260px,78%);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:clamp(44px,5vw,64px) calc(var(--gut) * -1) 0;padding:0 var(--gut)}
+  .hw-tiles::-webkit-scrollbar{display:none}
+  .hw-tile{scroll-snap-align:start}
+  .g-grid{grid-template-columns:1fr 1fr}
+  .g-grid li:nth-child(n){grid-column:auto}
+  .g-grid li:nth-child(1){grid-column:1/-1}
+  .g-two li:nth-child(n){grid-column:1/-1}
+  .top{top:54px}
+  .top .row{grid-template-columns:1fr auto;padding:0 18px}
+  .top nav{display:none}
+  .hero{height:100svh;min-height:560px}
+  .situations{grid-template-columns:1fr}
+  .nr-grid{grid-template-columns:1fr}
+  .situations{max-width:520px}
+  .how{height:auto;padding:var(--gap) 8px}
+  .how-sticky{position:static;height:auto;overflow:visible}
+  .how-card{position:static;clip-path:none;display:flex;flex-direction:column;gap:20px;background:none}
+  .how-text{position:static;width:auto;padding:0 10px;order:-1}
+  .how .h2{font-size:clamp(40px,9vw,56px);line-height:1.12}
+  .tabs{gap:10px 22px;margin-top:22px}
+  .copy{margin-top:22px}
+  .stage{position:relative;width:auto;height:auto;aspect-ratio:4/5;max-height:620px;border-radius:var(--r-card)}
+  .panel{transform:none;opacity:0;transition:opacity .6s ease}
+  .panel.on{opacity:1}
+  .panel.past{opacity:0}
+  .ex{top:16px;left:16px}
+  footer .top-row{grid-template-columns:1fr 1fr}
+  footer .top-row > div:first-child{grid-column:1/-1}
+}
+@media (max-width:600px){
+  body{font-size:17px}
+  .top{top:52px}
+  .hero-copy{padding:110px 18px 150px}
+  /* DL-112 follow-up: on phones the heading sits low, clear of the faces in the terrace and office shots, on a soft cream fade so it reads over the sea */
+  .hero-copy{justify-content:flex-end;padding-bottom:86px}
+  .hero::before{background:linear-gradient(to top,rgba(14,12,12,.62) 0%,rgba(14,12,12,.38) 30%,rgba(14,12,12,0) 58%)}
+  .hero-go .btn{padding:14px 18px;font-size:16px}
+  .vid-toggle{right:50%;transform:translateX(50%);bottom:14px}
+  .hero video.film{object-position:62% center}
+  .hero video.film.far,.hero .poster{object-position:88% center}
+  .g-grid{grid-template-columns:1fr;grid-auto-rows:auto}
+  .g-grid li:nth-child(n){grid-column:auto}
+  .g-tile{padding:22px 22px 0}
+  .wd-vis{margin:2px 8px 0;padding:40px 14px 22px;min-height:0}
+  .talk{margin:0 8px}
+  .legal{flex-direction:column}
+  .feed{height:230px}
+  /* Phones: one photo at a time, 4:5 (the example cards moved to What we do on 2026-10-04) */
+  .stage{aspect-ratio:auto;max-height:none;overflow:visible;background:none;border-radius:0}
+  .panel{position:relative;inset:auto;display:none}
+  .panel.on{display:block;animation:fade .5s ease}
+  .panel::after{display:none}
+  .panel > img{position:relative;inset:auto;height:auto;aspect-ratio:4/5;border-radius:var(--r-card)}
+  .ex{top:12px;left:12px}
+}
+/* The film in the corner (Fahad 2026-10-04: "use this video for now", as a small window customers click to expand). The
+   "Unfazed" draft 2 (480p, silent) plays small and muted bottom right once the hero has scrolled away, steps aside for the
+   footer, and opens large over a pale veil. The finished 1080p cut replaces media/unfazed-draft.mp4 later. */
+.pip{position:fixed;right:24px;bottom:24px;z-index:45;width:260px;border-radius:var(--r-card);background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .4s ease,transform .4s ease}
+.pip.on{opacity:1;transform:none;pointer-events:auto}
+.pip-open{display:block;width:100%;border:0;background:none;padding:0;cursor:pointer;text-align:left}
+.pip-open video{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--linen)}
+.pip-cap{display:flex;align-items:center;gap:10px;padding:10px 14px 12px;font:500 15px/1.2 var(--sans);color:var(--ink)}
+.pip-cap i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--rasp);display:grid;place-items:center;transition:background .2s}
+.pip-cap i svg{width:9px;height:11px;margin-left:2px}
+.pip-cap small{margin-left:auto;font-size:13px;color:var(--body)}
+.pip-open:hover .pip-cap i{background:var(--rasp-hover)}
+.pip-x{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.pip-x svg{width:10px;height:10px}
+.film-lb{border:0;padding:0;background:transparent;width:min(1100px,calc(100vw - 32px));max-width:none;margin:auto;overflow:visible}
+.film-lb::backdrop{background:rgba(254,250,251,.9);backdrop-filter:blur(10px)}
+.film-lb video{width:100%;aspect-ratio:16/9;border-radius:var(--r-card);background:var(--linen);box-shadow:var(--shadow)}
+.film-lb-x{position:absolute;right:0;bottom:calc(100% + 12px);border:1px solid var(--line);background:var(--white);color:var(--ink);border-radius:999px;font:500 15px var(--sans);padding:8px 16px;cursor:pointer}
+@media (max-width:600px){
+  .pip{width:min(150px,40vw);right:12px;bottom:12px}
+  .pip-cap{padding:8px 8px 9px;gap:6px;font-size:12.5px;white-space:nowrap}
+  .pip-cap i{width:22px;height:22px}
+  .pip-x{top:6px;right:6px;width:24px;height:24px}
+  .pip-x svg{width:8px;height:8px}
+  .pip-cap small{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .pip{transition:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .art *{animation:none!important}
+  .art-enq .m{opacity:1;transform:none}
+  .g-tile,.g-tile:hover{transition:none;transform:none}
+  .rv{opacity:1;transform:none;transition:none}
+  .hero .h1,.hero-go,.h1-sierra > span,.hero::before{animation:none}
+  .b,.done,.think{animation:none}
+  .busy .orb::after,.caret{animation:none}
+  .panel.on{animation:none}
+}
+</style>
+</head>
+<body>
+
+<p class="bar"><span><b>Vela</b> <span class="hide-s">· AI systems and marketing for owner-run businesses</span> · Ontario, Canada</span><a href="contact.html">Talk to us</a></p>
+
+<header class="top" id="top">
+  <div class="row">
+    <a class="logo" href="#" aria-label="Vela Systems home"><img src="media/logo/vela-logo.svg" alt="" width="118" height="40"><img class="logo-swap" src="media/logo/vela-logo-swap.svg" alt="" width="118" height="40" aria-hidden="true"></a>
+    <nav aria-label="Main">
+      <a class="nav-prod" href="products.html">Products</a>
+      <a href="systems.html">Systems</a>
+      <a href="marketing.html">Marketing</a>
+      <a href="blog/index.html">Blogs</a>
+      <a href="#who">About</a>
+    </nav>
+    <a class="btn btn-rasp cta" href="contact.html">Talk to us</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" aria-label="Introduction">
+  <img class="poster" src="media/hero-montage-end.jpg" alt="" aria-hidden="true">
+  <!-- Hero film (DL-072): city crossing, coffee, office team, sailboat; the whole film loops (Fahad 2026-10-04) -->
+  <video id="bg" class="film" autoplay muted playsinline preload="auto" poster="media/hero-montage-poster.jpg" aria-hidden="true">
+    <source src="media/hero-montage.mp4" type="video/mp4">
+  </video>
+  <!-- Second copy of the film for the seamless replay (DL-165): it starts from the top and fades in over the last second -->
+  <video id="bg2" class="film off" muted playsinline preload="auto" aria-hidden="true">
+    <source src="media/hero-montage.mp4" type="video/mp4">
+  </video>
+  <div class="hero-copy"><h1 class="h1 h1-sierra"><span>Navigate Growth</span> <span>with <em class="pk">Intelligence</em>.</span></h1>
+    <div class="hero-go"><a class="btn btn-pale" href="contact.html">Learn more</a></div>
+  </div>
+  <button class="vid-toggle" id="vidToggle" type="button" aria-pressed="false">Pause video</button>
+</section>
+
+<div class="ground">
+<!-- WHAT WE DO -->
+<section class="intro" id="what" aria-labelledby="what-h">
+  <div class="wrap center">
+    <p class="eyebrow rv">What we do</p>
+    <h2 class="h2 h2-sm rv" id="what-h">Systems built around your business.</h2>
+    <p class="lede rv">We take the everyday work off your plate, so your time goes to what moves the business forward.</p>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+      <linearGradient id="wdg1" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f4c9da"/></linearGradient>
+      <linearGradient id="wdg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2648f"/><stop offset="1" stop-color="#bb4470"/></linearGradient>
+      <linearGradient id="gOut" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ea7aa2"/><stop offset="1" stop-color="#bb4470"/></linearGradient>
+    </defs></svg>
+    <div class="g-wrap"><div class="g-guides" aria-hidden="true"></div>
+    <ul class="g-grid g-two">
+      <li class="rv"><div class="g-tile g-ui"><span class="g-text"><span class="g-lab">Systems</span><span class="g-ln">More clients, with no extra hours.</span><span class="g-body">A system built for your kind of business takes care of replies, filing and follow-ups, so you can take on more work without more admin.</span></span><i class="g-plus" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4"/></svg></i><span class="g-art n8-art"><span class="n8" role="group" aria-label="Example workflow: a new client enquiry, from the website form to a booked visit"></span></span><a class="g-go" href="systems.html">See our systems</a></div></li>
+      <li class="rv"><a class="g-tile" href="marketing.html"><span class="g-text"><span class="g-lab">Marketing</span><span class="g-ln">A plan made for your business alone.</span><span class="g-body">We study your market and your clients, build a strategy for your business, and choose the techniques that fit it. Then we run it, and you see what it brought in.</span></span><i class="g-plus" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4"/></svg></i><span class="g-art"><svg class="art art-mkt" viewBox="0 0 400 220" aria-hidden="true"><circle class="gline" cx="290" cy="110" r="36"/><circle class="gline" cx="290" cy="110" r="68"/><circle class="gline" cx="290" cy="110" r="100"/><circle cx="290" cy="110" r="16" fill="url(#gOut)"/><g class="orb"><circle cx="290" cy="42" r="7" fill="#e2648f"/></g><g class="orb orb2"><circle cx="390" cy="110" r="6" fill="#f0a9c3"/><circle cx="190" cy="110" r="6" fill="#f0a9c3"/></g><circle class="inw i1" cx="40" cy="60" r="6" fill="#e2648f" style="--to:translate(232px,46px)"/><circle class="inw i2" cx="40" cy="160" r="6" fill="#e2648f" style="--to:translate(232px,-46px)"/><circle class="inw i3" cx="20" cy="110" r="6" fill="#e2648f" style="--to:translate(252px,0)"/></svg></span><span class="g-go">Learn more about marketing</span></a></li>
+    </ul></div>
+    <div class="go rv"><a class="btn btn-ink" href="#how">See how it works <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></div>
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR -->
+<section class="who" id="who" aria-labelledby="who-h">
+  <div class="wrap center">
+    <p class="eyebrow rv">Who it’s for</p>
+    <h2 class="h2 rv" id="who-h">For businesses ready to grow.</h2>
+    <ul class="who-cols">
+      <li class="rv"><h3 class="wc-t">A smoother <span class="nw">day-to-day</span></h3><p class="wc-l">You want the everyday work to run cleaner, with fewer loose ends and less chasing.</p></li>
+      <li class="rv"><h3 class="wc-t">Found by more customers</h3><p class="wc-l">You want new leads to find you, whether they search Google or ask ChatGPT.</p></li>
+      <li class="rv"><h3 class="wc-t">Your time, back</h3><p class="wc-l">You still answer every call and email yourself, and you’d like your evenings back.</p></li>
+      <li class="rv"><h3 class="wc-t">The next chapter</h3><p class="wc-l">You’re planning to expand, and you want systems strong enough to carry the extra load.</p></li>
+    </ul>
+    <div class="go rv"><a class="btn btn-rasp" href="contact.html">Talk to us</a></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS: scroll moves Look, Build, Run -->
+<section class="how" id="how" aria-labelledby="how-h">
+  <div class="how-sticky">
+    <div class="how-card">
+      <div class="stage" id="stage">
+        <span class="ex">Example</span>
+        <div class="panel on" id="p0" role="tabpanel" aria-labelledby="t0">
+          <img src="media/how-look.jpg" alt="A consultant talking with two clients in a bright white room">
+        </div>
+        <div class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
+          <img src="media/how-build.jpg" alt="A woman mapping out a system on a whiteboard">
+        </div>
+        <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
+          <img src="media/how-implement.jpg" alt="A woman walking an owner through his new setup on a laptop">
+        </div>
+        <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
+          <img src="media/how-run.jpg" alt="An owner smiling while talking with a client">
+        </div>
+      </div>
+      <div class="how-text">
+        <p class="eyebrow rv">How it works</p>
+        <h2 class="h2 rv" id="how-h">One conversation. Then it runs.</h2>
+        <div class="tabs" role="tablist" aria-label="How it works">
+          <button role="tab" id="t0" aria-controls="p0" aria-selected="true">Discover</button>
+          <button role="tab" id="t1" aria-controls="p1" aria-selected="false" tabindex="-1">Create</button>
+          <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Implement</button>
+          <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Aftercare</button>
+        </div>
+        <div class="copy">
+          <div class="on"><p>A discovery call. You tell us what takes your time and what you want to run better. We ask about the sticking points, and we tell you plainly what we can do.</p><a class="arrow-link" href="contact.html"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i>Talk to us</a></div>
+          <div><p>We create the systems. Each one is designed around how your business already works, for the jobs you want off your plate.</p><a class="arrow-link" href="#what"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i>What we do</a></div>
+          <div><p>We put them in place. We set the systems up in your business, test them with you, and switch them on when you are happy.</p><a class="arrow-link" href="#faq"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i>Questions</a></div>
+          <div><p>Aftercare. We look after the systems, fix anything that needs it, and send you a plain monthly note on what happened and what we changed.</p><a class="arrow-link" href="contact.html"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i>Talk to us</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- QUESTIONS -->
+<section class="faq" id="faq" aria-labelledby="faq-h">
+  <div class="wrap center">
+    <p class="eyebrow rv">Questions</p>
+    <h2 class="h2 rv" id="faq-h">Fair questions. Plain answers.</h2>
+    <ul class="qs">
+      <li class="rv"><button type="button" aria-expanded="false">How do we start?<i class="plus" aria-hidden="true"></i></button>
+        <div class="more"><div><p>One conversation about where your time goes and where the work comes from. Then a short written plan of what we would automate first and where the clients would come from.</p></div></div></li>
+      <li class="rv"><button type="button" aria-expanded="false">Do I have to change the tools I use?<i class="plus" aria-hidden="true"></i></button>
+        <div class="more"><div><p>No. We build into what you already use rather than replacing it.</p></div></div></li>
+      <li class="rv"><button type="button" aria-expanded="false">How long until the first system is running?<i class="plus" aria-hidden="true"></i></button>
+        <div class="more"><div><p>Two to four weeks for the first system, running inside your tools, checked by us before it goes live.</p></div></div></li>
+      <li class="rv"><button type="button" aria-expanded="false">Do I see what it sends?<i class="plus" aria-hidden="true"></i></button>
+        <div class="more"><div><p>You see everything it does. Nothing goes out that you have not approved the shape of.</p></div></div></li>
+      <li class="rv"><button type="button" aria-expanded="false">What happens after it goes live?<i class="plus" aria-hidden="true"></i></button>
+        <div class="more"><div><p>It runs daily. We review its work, adjust it, and send you one plain note a month: what ran, what it brought in, what we are changing.</p></div></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- LATEST POSTS (DL-089, Blog per DL-091): the three newest posts; the cards between the markers are written by blog/build.py -->
+<section class="notes-row" id="notes" aria-labelledby="notes-h">
+  <div class="wrap center">
+    <p class="eyebrow rv">Blogs</p>
+    <h2 class="h2 rv" id="notes-h">A plain guide to the age of artificial intelligence.</h2>
+    <!-- NOTES:START -->
+    <ul class="nr-grid">
+    <li class="rv"><a class="nr-card" href="blog/the-end-of-the-pyramid.html"><span class="nr-cover nr-photo" aria-hidden="true"><img src="media/blog/the-end-of-the-pyramid.jpg" alt="" loading="lazy"></span><span class="nr-title">The end of the pyramid: how artificial intelligence challenges the agency business model</span><span class="nr-by"><img src="media/people/fahad-ishtiaq-sketch.jpg" alt="" width="40" height="40" loading="lazy"><span><b>Fahad Ishtiaq</b><span class="nr-role">Founder, Vela</span></span></span><span class="nr-meta"><time datetime="2026-10-14">14 October 2026</time><span aria-hidden="true">·</span><span>6 min read</span></span><span class="nr-sum">AI is changing the economics of agency work. Delivery, pricing and expertise will determine which firms turn faster production into value.</span></a></li>
+    <li class="rv"><a class="nr-card" href="blog/the-augmented-decade.html"><span class="nr-cover nr-photo" aria-hidden="true"><img src="media/blog/the-augmented-decade.jpg" alt="" loading="lazy"></span><span class="nr-title">The augmented decade: how artificial intelligence will reshape the way we work</span><span class="nr-by"><img src="media/people/fahad-ishtiaq-sketch.jpg" alt="" width="40" height="40" loading="lazy"><span><b>Fahad Ishtiaq</b><span class="nr-role">Founder, Vela</span></span></span><span class="nr-meta"><time datetime="2026-09-16">16 September 2026</time><span aria-hidden="true">·</span><span>6 min read</span></span><span class="nr-sum">AI can expand what your people accomplish. Put the evidence to work through better task design, practical testing and stronger judgement.</span></a></li>
+    <li class="rv"><a class="nr-card" href="blog/the-era-of-ai-slop.html"><span class="nr-cover nr-photo" aria-hidden="true"><img src="media/blog/the-era-of-ai-slop.jpg" alt="" loading="lazy"></span><span class="nr-title">The era of artificial intelligence slop: what makes content worth publishing</span><span class="nr-by"><img src="media/people/fahad-ishtiaq-sketch.jpg" alt="" width="40" height="40" loading="lazy"><span><b>Fahad Ishtiaq</b><span class="nr-role">Founder, Vela</span></span></span><span class="nr-meta"><time datetime="2026-08-19">19 August 2026</time><span aria-hidden="true">·</span><span>6 min read</span></span><span class="nr-sum">AI makes content easier to produce. Clear arguments, sound evidence and editorial judgement make it worth reading.</span></a></li>
+    </ul>
+    <!-- NOTES:END -->
+    <div class="go rv"><a class="arrow-link" href="blog/index.html"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></i>All posts</a></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<!-- LET'S HAVE A CONVERSATION: the page's closing block. The form has its own page, contact.html (Fahad 2026-10-04) -->
+<section class="talk" id="talk" aria-labelledby="talk-h">
+  <div class="wrap">
+    <h2 class="h2 rv" id="talk-h">Tell us what takes your time.</h2>
+    <p class="lede rv">One conversation, then a short written plan of what we would take off your desk first.</p>
+    <div class="go rv"><a class="btn btn-rasp" href="contact.html">Talk to us <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="top-row">
+      <div><a class="logo" href="#" aria-label="Vela Systems home"><img src="media/logo/vela-logo.svg" alt="" width="118" height="40"></a><p class="tag">AI systems and marketing for owner-run businesses.</p></div>
+      <div><h4>Pages</h4><ul><li><a href="products.html">Products</a></li><li><a href="systems.html">Systems</a></li><li><a href="marketing.html">Marketing</a></li><li><a href="blog/index.html">Blogs</a></li><li><a href="#who">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Email: to come</li><li>Ontario, Canada</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Vela · velasystems.ca</span><span>Screens marked Example are illustrations.</span></div>
+  </div>
+</footer>
+
+<aside class="pip" id="pip" aria-label="Our film">
+  <button class="pip-open" id="pipOpen" type="button" aria-haspopup="dialog">
+    <video id="pipVid" muted loop playsinline preload="none" poster="media/unfazed-poster.jpg" aria-hidden="true"><source src="media/unfazed-draft.mp4" type="video/mp4"></video>
+    <span class="pip-cap"><i aria-hidden="true"><svg viewBox="0 0 9 11"><path d="M0 0l9 5.5L0 11z" fill="#fff"/></svg></i>Watch the film<small>0:30</small></span>
+  </button>
+  <button class="pip-x" id="pipX" type="button" aria-label="Hide the film"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 1l8 8M9 1l-8 8"/></svg></button>
+</aside>
+<dialog class="film-lb" id="filmLb" aria-label="Vela film, 30 seconds, no sound">
+  <button class="film-lb-x" id="filmLbX" type="button">Close</button>
+  <video id="lbVid" controls playsinline preload="none" poster="media/unfazed-poster.jpg"><source src="media/unfazed-draft.mp4" type="video/mp4"></video>
+</dialog>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wide = matchMedia('(min-width: 901px)');
+
+  // Header: slides up to the top edge and the nav gets its pill once the bar is passed
+  const top = document.getElementById('top');
+  const setTop = () => top.classList.toggle('up', scrollY > 30);
+  addEventListener('scroll', setTop, {passive:true}); setTop();
+
+  // Logo colour wave (DL-104): every 5 seconds a wave sweeps the other colourway in; still for reduced motion
+  const logoLink = top.querySelector('.logo'), logoBase = top.querySelector('.logo img:not(.logo-swap)'), logoSwap = top.querySelector('.logo-swap');
+  if (!reduce && logoSwap) {
+    let pink = false, busy = false;
+    const wave = () => {
+      if (document.hidden || busy) return;
+      busy = true; pink = !pink; const inc = pink ? logoSwap : logoBase;
+      if (pink) logoSwap.classList.add('shown');
+      logoLink.classList.remove('pop'); void logoLink.offsetWidth; logoLink.classList.add('pop');
+      inc.classList.remove('wave-in'); void inc.offsetWidth; inc.classList.add('wave-in');
+      inc.addEventListener('animationend', e => { if (e.target !== inc) return; inc.classList.remove('wave-in'); if (!pink) logoSwap.classList.remove('shown'); busy = false; }, {once: true});
+    };
+    setInterval(wave, 5000);
+  }
+
+  // Hero film: the whole montage loops. Phones see a narrow slice of the 16:9 frame, so the sailboat shot (from 3.87s, DL-167,
+  // boat far right) is framed further right there. Pause control; the end frame as a still for reduced motion; resumes
+  // when the visitor returns to the tab. ?bg=<coverr url> previews a clip.
+  // Seamless replay (DL-165): two copies take turns. 1.2s before the playing one ends, the other (waiting, loaded, on its
+  // first frame) starts from the top and fades in on top over 1s, so the old one is still moving underneath; then the old
+  // one stops and waits. 'ended' covers a hidden tab, where frame timing pauses.
+  const v = document.getElementById('bg'), v2 = document.getElementById('bg2'), vt = document.getElementById('vidToggle');
+  const films = [v, v2], XF = 1, LEAD = 1.2;
+  let nowFilm = v, fading = false, userPaused = false;
+  const trial = new URLSearchParams(location.search).get('bg'), isTrial = !!trial && /^https:\/\/cdn\.coverr\.co\/videos\//.test(trial);
+  if (isTrial) { document.querySelector('.hero .poster').remove(); v.removeAttribute('poster'); films.forEach(f => { f.src = trial; f.load(); }); v.addEventListener('canplay', () => { if (!reduce) v.play().catch(() => {}); }, {once:true}); }
+  const narrow = matchMedia('(max-width:600px)');
+  const frame = (el, t) => el.classList.toggle('far', !isTrial && narrow.matches && t >= 3.87);
+  const swap = () => {
+    if (fading || reduce || userPaused) return;
+    const next = nowFilm === v ? v2 : v, prev = nowFilm;
+    fading = true; next.currentTime = 0; frame(next, 0);
+    next.classList.add('top'); prev.classList.remove('top');
+    nowFilm = next;
+    next.play().catch(() => {});
+    void next.offsetWidth; next.classList.remove('off');
+    setTimeout(() => { prev.pause(); prev.classList.add('off'); fading = false; }, XF * 1000 + 50);
+  };
+  const near = (el, t) => { frame(el, t); if (el === nowFilm && el.duration && t >= el.duration - LEAD) swap(); };
+  films.forEach(el => {
+    if ('requestVideoFrameCallback' in el) { const tick = (now, m) => { near(el, m.mediaTime); el.requestVideoFrameCallback(tick); }; el.requestVideoFrameCallback(tick); }
+    ['timeupdate', 'seeked', 'pause', 'playing'].forEach(e => el.addEventListener(e, () => near(el, el.currentTime)));
+    el.addEventListener('ended', () => { if (el === nowFilm) swap(); });
+  });
+  v.classList.add('top');
+  narrow.addEventListener('change', () => films.forEach(el => frame(el, el.currentTime)));
+  const setVid = play => { play ? nowFilm.play().catch(() => {}) : films.forEach(el => el.pause()); vt.textContent = play ? 'Pause video' : 'Play video'; vt.setAttribute('aria-pressed', String(!play)); };
+  if (reduce) { if (!isTrial) films.forEach(el => el.style.visibility = 'hidden'); setVid(false); }
+  vt.addEventListener('click', () => { const play = nowFilm.paused; userPaused = !play; setVid(play); if (play && nowFilm.ended) swap(); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && !userPaused && !reduce) { if (nowFilm.ended) swap(); else nowFilm.play().catch(() => {}); } });
+
+  // What we do drawings: still for reduced motion
+  if (reduce) document.querySelectorAll('.art').forEach(svg => svg.pauseAnimations && svg.pauseAnimations());
+
+  // Questions open in place
+  document.querySelectorAll('.qs button').forEach(b => b.addEventListener('click', () => {
+    const li = b.parentElement, open = !li.classList.contains('open');
+    li.classList.toggle('open', open); b.setAttribute('aria-expanded', String(open));
+  }));
+
+  // ---- How it works (Neko): pinned full-screen panel; scroll picks Discover / Create / Implement / Aftercare; the next image slides up over the last ----
+  const how = document.getElementById('how'), card = how.querySelector('.how-card');
+  const tabs = [...how.querySelectorAll('[role=tab]')], panels = [...how.querySelectorAll('.panel')], copies = [...how.querySelectorAll('.copy > div')];
+  let cur = -1;
+  const show = i => {
+    if (i === cur) return; cur = i;
+    tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
+    panels.forEach((p, k) => { p.classList.toggle('on', k === i); p.classList.toggle('past', k < i); });
+    copies.forEach((c, k) => c.classList.toggle('on', k === i));
+  };
+  const SW = [.32, .6, .84], AT = [.15, .46, .72, .94]; // switch points and click targets, as a share of the pinned scroll (four steps, DL-116)
+  const range = () => ({start: scrollY + how.getBoundingClientRect().top, len: Math.max(1, how.offsetHeight - innerHeight)});
+  const onScroll = () => {
+    if (!wide.matches) { card.style.removeProperty('--in'); card.style.removeProperty('--rad'); return; }
+    const {start, len} = range(), off = scrollY - start;
+    const t = Math.min(1, Math.max(0, (off + 300) / 600)), e = 1 - Math.pow(1 - t, 3);
+    card.style.setProperty('--in', (reduce ? 0 : (1 - e) * innerWidth * .0551).toFixed(1) + 'px');
+    card.style.setProperty('--rad', (reduce ? 0 : (1 - e) * 43).toFixed(1) + 'px');
+    const p = Math.min(.999, Math.max(0, off / len));
+    show(SW.filter(x => p >= x).length);
+  };
+  addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll);
+  tabs.forEach((t, k) => {
+    t.addEventListener('click', () => { if (wide.matches) { const {start, len} = range(); scrollTo({top: start + len * AT[k], behavior: reduce ? 'auto' : 'smooth'}); } show(k); });
+    t.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const n = (k + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length; tabs[n].focus(); tabs[n].click(); } });
+  });
+  show(0); onScroll();
+
+  // Reveal: each item on its own visibility, one at a time with a short beat between
+  const rv = [...document.querySelectorAll('.rv')];
+  if (reduce || !('IntersectionObserver' in window)) rv.forEach(e => e.classList.add('in'));
+  else {
+    const queue = []; let busy = false;
+    const drain = () => { if (!queue.length) { busy = false; return; } busy = true; queue.shift().classList.add('in'); setTimeout(drain, 120); };
+    const io = new IntersectionObserver(es => { es.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left).forEach(e => { io.unobserve(e.target); queue.push(e.target); }); if (!busy) drain(); }, {rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(e => io.observe(e));
+  }
+
+  // The film in the corner: shows once the hero has scrolled away and steps aside while the footer is in view; plays small
+  // and muted (a still for reduced motion); a click opens it large. Closing it hides it for the rest of the visit.
+  const pip = document.getElementById('pip'), pv = document.getElementById('pipVid');
+  const lb = document.getElementById('filmLb'), lv = document.getElementById('lbVid');
+  let pipGone = false, heroIn = true, footIn = false;
+  try { pipGone = sessionStorage.getItem('vela-pip') === 'x'; } catch (e) {}
+  const pipSet = () => {
+    const on = !pipGone && !heroIn && !footIn;
+    pip.classList.toggle('on', on);
+    if (on && !reduce && !lb.open && !document.hidden) pv.play().catch(() => {}); else pv.pause();
+  };
+  if (pipGone) pip.remove();
+  else if ('IntersectionObserver' in window) {
+    const pio = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.target.tagName === 'FOOTER') footIn = e.isIntersecting; else heroIn = e.isIntersecting; });
+      pipSet();
+    });
+    pio.observe(document.querySelector('.hero')); pio.observe(document.querySelector('footer'));
+    document.getElementById('pipX').addEventListener('click', () => {
+      pipGone = true; pipSet(); pio.disconnect();
+      try { sessionStorage.setItem('vela-pip', 'x'); } catch (e) {}
+      setTimeout(() => pip.remove(), 450);
+    });
+    document.getElementById('pipOpen').addEventListener('click', () => { pv.pause(); lb.showModal(); lv.currentTime = 0; lv.play().catch(() => {}); });
+    document.addEventListener('visibilitychange', pipSet);
+  }
+  document.getElementById('filmLbX').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+  lb.addEventListener('close', () => { lv.pause(); if (pip.isConnected) pipSet(); });
+
+  // Verification hooks (rAF and IntersectionObserver are unreliable in the Claude pane)
+  window.__pip = (hero, foot) => { heroIn = !!hero; footIn = !!foot; pipSet(); };
+  window.__revealAll = () => rv.forEach(e => e.classList.add('in'));
+  window.__tab = i => { cur = -1; show(i); };
+  window.__pause = () => { gen++; setVid(false); };
+})();
+</script>
+<script>
+// What we do, AI systems tile: the workflow-editor screen. One engine lays the job out on a 1470 x 570 canvas, pans and zooms
+// like the editor (the dots move with it), runs the job node by node, then fits the whole workflow and starts again. Visitors
+// can zoom in and out, open it full screen, and press Execute workflow to run it again. Time only passes while it is on
+// screen; reduced motion shows the finished run, fitted, standing still.
+(() => {
+const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const IC = {
+  form: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/>',
+  spark: '<path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>',
+  route: '<path d="M4 12h5"/><path d="M9 12c3 0 3-6 6-6h4M9 12h10M9 12c3 0 3 6 6 6h4"/><path d="M17 4l2 2-2 2M17 10l2 2-2 2M17 16l2 2-2 2"/>',
+  cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h3"/>',
+  folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+  phone: '<path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+  clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+  db: '<ellipse cx="12" cy="6" rx="7" ry="2.8"/><path d="M5 6v12c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8V6M5 12c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8"/>',
+  chat: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/>'
+};
+const CHECK = '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M4.6 8.2l2.2 2.2 4.6-4.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+// id: x, y (top-left), kind, icon, colour, name, operation
+const NODES = {
+  trig: {x: 40, y: 290, k: 'trig', ic: 'form', c: '#ea4b71', n: 'Website form', s: 'On form submission'},
+  agent: {x: 200, y: 290, k: 'wide', ic: 'spark', c: '#7e57c2', n: 'Read the enquiry', s: 'AI agent'},
+  model: {x: 218, y: 452, k: 'circ', ic: 'spark', c: '#5b5b66', n: 'Chat model', s: ''},
+  tool: {x: 318, y: 452, k: 'circ', ic: 'db', c: '#2f6db5', n: 'Client records', s: ''},
+  sw: {x: 470, y: 290, k: 'sw', ic: 'route', c: '#16a394', n: 'Who is it?', s: 'Rules'},
+  find: {x: 650, y: 150, ic: 'cal', c: '#1f8bf3', n: 'Find open times', s: 'Calendar: free slots'},
+  exist: {x: 650, y: 290, ic: 'folder', c: '#7a7f8c', n: 'Add to their file', s: 'Records: update'},
+  urg: {x: 650, y: 430, ic: 'phone', c: '#ea4b71', n: 'Call you now', s: 'Phone: call'},
+  reply: {x: 820, y: 150, ic: 'mail', c: '#f08c00', n: 'Offer two times', s: 'Email: send'},
+  wait: {x: 990, y: 150, ic: 'clock', c: '#e8590c', n: 'Wait for reply', s: 'Resume on reply'},
+  book: {x: 1160, y: 10, ic: 'cal', c: '#1f8bf3', n: 'Book the visit', s: 'Calendar: create'},
+  rec: {x: 1160, y: 150, ic: 'db', c: '#2f6db5', n: 'Open client file', s: 'Records: create'},
+  forms: {x: 1160, y: 290, ic: 'mail', c: '#f08c00', n: 'Send intake forms', s: 'Email: send'},
+  sum: {x: 1330, y: 150, ic: 'chat', c: '#5059c9', n: 'Morning summary', s: 'Chat: post message'}
+};
+const EDGES = [['trig', 'agent'], ['agent', 'sw'], ['sw', 'find', 0], ['sw', 'exist', 1], ['sw', 'urg', 2], ['find', 'reply'], ['reply', 'wait'],
+  ['wait', 'book'], ['wait', 'rec'], ['wait', 'forms'], ['book', 'sum'], ['rec', 'sum'], ['forms', 'sum']];
+const SW_OUT = [-26, 0, 26], SW_LABEL = ['new client', 'existing', 'urgent'], WW = 1470, WH = 570;
+
+const STOP = {};
+// One editor on a root element. big = the full-screen copy (its fit button fits the workflow; the tile's opens full screen).
+function editor(root, big, onFull) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const btn = (cls, label, path) => `<button type="button" class="${cls}" aria-label="${label}"><svg viewBox="0 0 24 24" aria-hidden="true">${path}</svg></button>`;
+  const FIT = '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>', ZIN = '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M8.5 11h5M11 8.5v5"/>';
+  const ZOUT = '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M8.5 11h5"/>', FLASK = '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/>';
+  const BOLT = '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>';
+  // The "What happens next?" list behind the plus sign: kinds of step, no vendor names (DL-144)
+  const STEPS = [['AI', 'Build agents, summarise, sort or search', 'spark', '#7e57c2'],
+    ['Action in an app', 'Send an email, update a record, book a visit', 'mail', '#f08c00'],
+    ['Data transformation', 'Change, combine or tidy the data', 'form', '#2f6db5'],
+    ['Flow', 'Branch, wait, merge or loop', 'route', '#16a394'],
+    ['Core', 'Run code, call another service, set a schedule', 'clock', '#e8590c'],
+    ['Add another trigger', 'Start the workflow from another event', 'bolt', '#ff6d5a']];
+  root.innerHTML = `<span class="n8-top"><span class="n8-crumb" aria-hidden="true"><span>Personal ›</span><b>New client enquiry</b></span>
+    <span class="n8-tabs"><button type="button" class="n8te n8o" aria-pressed="true">Editor</button><button type="button" class="n8tx" aria-pressed="false">Executions</button></span>
+    <span class="n8-right"><button type="button" class="n8-saved" aria-label="Save the example workflow">Saved</button><button type="button" class="n8-act" role="switch" aria-checked="true" aria-label="Workflow active"><span>Active</span><i class="n8-tg" aria-hidden="true"></i></button><span class="n8-btn" aria-hidden="true">Share</span></span></span>
+    <span class="n8-cv"><span class="n8-world" aria-hidden="true"><svg></svg></span>
+    <button type="button" class="n8-plus" aria-label="Add a step" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+    <span class="n8-xs" aria-label="Past runs of this workflow"><span class="n8-xs-h">Executions<span>Last 24 hours</span></span><ol></ol></span>
+    <span class="n8-np" role="dialog" aria-label="What happens next?"><span class="n8-np-h">What happens next?<button type="button" class="n8-np-x" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>
+      <input type="search" placeholder="Search steps" aria-label="Search steps">
+      <ul>${STEPS.map(([n, s, ic, c]) => `<li><button type="button"><i style="color:${c}"><svg viewBox="0 0 24 24"${ic === 'bolt' ? ' style="fill:currentColor;stroke:none"' : ''}>${ic === 'bolt' ? BOLT : IC[ic]}</svg></i><span><b>${n}</b><small>${s}</small></span></button></li>`).join('')}</ul>
+      <span class="n8-np-none" hidden>Nothing matches. Try “email” or “AI”.</span></span>
+    <span class="n8-toast" aria-hidden="true">${CHECK.replace('<svg', '<svg style="width:15px;height:15px"')}Workflow executed successfully</span>
+    <span class="n8-zoom">${btn('n8f', big ? 'Fit the whole workflow' : 'Open the workflow full screen', FIT)}${btn('n8zi', 'Zoom in', ZIN)}${btn('n8zo', 'Zoom out', ZOUT)}</span>
+    <button type="button" class="n8-run" aria-label="Run the example workflow again"><svg viewBox="0 0 24 24" aria-hidden="true">${FLASK}</svg><span>Execute workflow</span></button>
+    <span class="n8-ex" aria-hidden="true">Example</span></span>`;
+  const cv = root.querySelector('.n8-cv'), world = root.querySelector('.n8-world'), svg = world.querySelector('svg');
+  const run = root.querySelector('.n8-run'), toast = root.querySelector('.n8-toast'), fitBtn = root.querySelector('.n8f');
+  const el = s => { const t = document.createElement('template'); t.innerHTML = s.trim(); return t.content.firstElementChild; };
+  const add = (tag, a, p) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  const gE = add('g', {}, svg), gG = add('g', {}, svg);
+  const N = {};
+  for (const id in NODES) {
+    const d = NODES[id], w = d.k === 'wide' ? 196 : d.k === 'circ' ? 64 : 92, h = d.k === 'circ' ? 64 : 92;
+    const icon = `<i class="n8-ic" style="color:${d.c}"><svg viewBox="0 0 24 24">${IC[d.ic]}</svg></i>`;
+    let inner = icon, extra = '';
+    if (d.k === 'wide') inner = `${icon}<span><b>${d.n}</b><small>${d.s}</small></span>`;
+    if (d.k !== 'trig' && d.k !== 'circ') extra += '<i class="n8-in"></i>';
+    if (d.k === 'trig') extra += '<i class="n8-bolt"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></i>';
+    if (d.k === 'sw') extra += SW_OUT.map((o, k) => `<i class="n8-out" style="top:${46 + o}px"></i><span class="n8-ol" style="top:${46 + o}px">${SW_LABEL[k]}</span>`).join('');
+    else if (d.k !== 'circ' && id !== 'sum') extra += '<i class="n8-out" style="top:46px"></i>';
+    if (d.k === 'wide') extra += '<i class="n8-port" style="left:50px"></i><i class="n8-port" style="left:150px"></i><span class="n8-pl" style="left:50px">Chat Model</span><span class="n8-pl" style="left:150px">Tool</span>';
+    const label = d.k === 'wide' ? '' : `<span class="n8-lb"><b>${d.n}</b>${d.s ? `<small>${d.s}</small>` : ''}</span>`;
+    const node = el(`<span class="n8-nd" style="left:${d.x}px;top:${d.y}px"><span class="n8-box ${d.k || ''}" style="width:${w}px;height:${h}px">${inner}<i class="n8-spin"></i><i class="n8-ok">${CHECK}</i>${extra}</span>${label}</span>`);
+    world.appendChild(node);
+    N[id] = {...d, w, h, el: node, cx: d.x + w / 2, cy: d.y + h / 2};
+  }
+  // wires: grey base, green run overlay, "1 item" label
+  const E = {};
+  const curve = (x1, y1, x2, y2) => { const m = Math.max(40, (x2 - x1) / 2); return `M${x1} ${y1}C${x1 + m} ${y1} ${x2 - m} ${y2} ${x2} ${y2}`; };
+  EDGES.forEach(([a, b, o]) => {
+    const A = N[a], B = N[b], y1 = A.y + 46 + (o === undefined ? 0 : SW_OUT[o]);
+    const d = curve(A.x + A.w + 5, y1, B.x - 5, B.y + 46);
+    const w = {base: add('path', {class: 'n8-e', d}, gE), g: add('path', {class: 'n8-g', d}, gG), L: 0, lab: el('<span class="n8-items">1 item</span>')};
+    world.appendChild(w.lab);
+    E[a + '>' + b] = w;
+  });
+  [['agent', 50, 'model'], ['agent', 150, 'tool']].forEach(([a, dx, b]) => {
+    const A = N[a], B = N[b]; add('path', {class: 'n8-e sub', d: `M${A.x + dx} ${A.y + A.h + 6}C${A.x + dx} ${A.y + A.h + 40} ${B.cx} ${B.y - 34} ${B.cx} ${B.y}`}, gE);
+  });
+  Object.values(E).forEach(w => { const L = w.g.getTotalLength(), p = w.g.getPointAtLength(L / 2); w.L = L; w.lab.style.left = p.x + 'px'; w.lab.style.top = p.y - 1 + 'px'; });
+
+  // Clock: time passes only while this editor is on screen, the tab is visible and it is not paused (the tile pauses while
+  // the full-screen copy is open). gen changes on a restart: pending waits end early and the run in flight stops.
+  let vis = false, paused = false, held = false, gen = 0;
+  new IntersectionObserver(es => { vis = es[0].isIntersecting; }, {threshold: .15}).observe(root);
+  const on = () => vis && !document.hidden && !paused && !held; // held: Executions or the steps panel is open
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const sleep = ms => { const g0 = gen; return REDUCE ? Promise.resolve() : new Promise(res => { let left = ms, last = performance.now();
+    const t = () => { const now = performance.now(); if (g0 !== gen) return res(); if (on()) left -= now - last; last = now; left <= 0 ? res() : setTimeout(t, 30); }; setTimeout(t, 30); }); };
+  const tween = (ms, fn) => { const g0 = gen; return REDUCE ? (fn(1), Promise.resolve()) : new Promise(res => { let p = 0, last = performance.now();
+    const f = now => { if (g0 !== gen) return res(); if (on()) p += (now - last) / ms; last = now; const q = Math.min(1, p); fn(ease(q)); q < 1 ? requestAnimationFrame(f) : res(); }; requestAnimationFrame(f); }); };
+  const guard = g => p => p.then(v => { if (g !== gen) throw STOP; return v; });
+
+  // Camera: follows the job; the visitor's zoom (uz) carries into the follow; a newer camera move cancels an older one
+  let VW = cv.clientWidth || 608, VH = cv.clientHeight || 318, z = .85, tx = 0, ty = 0, uz = 1, camGen = 0;
+  new ResizeObserver(() => { VW = cv.clientWidth || VW; VH = cv.clientHeight || VH; }).observe(cv);
+  const apply = () => { world.style.transform = `translate(${tx}px,${ty}px) scale(${z})`; cv.style.backgroundPosition = `${tx}px ${ty}px`; cv.style.backgroundSize = `${20 * z}px ${20 * z}px`; };
+  const axis = (v, span, size, lo, hi) => span + lo + hi <= size ? (size - span) / 2 : Math.min(lo, Math.max(size - span - hi, v));
+  const view = (cx, cy, zz) => ({x: axis(VW / 2 - cx * zz, WW * zz, VW, 24, 24), y: axis((VH - 40) / 2 - cy * zz, WH * zz, VH, 20, 56), z: zz});
+  const fitView = () => { const zz = Math.min((VW - 40) / WW, (VH - 80) / WH); return {x: (VW - WW * zz) / 2, y: (VH - 50 - WH * zz) / 2 + 2, z: zz}; };
+  const base = () => VW < 420 ? .78 : VW > 900 ? 1 : .85;
+  const look = (id, dy = 0) => view(N[id].cx, N[id].cy + dy, base() * uz);
+  const camTo = (t, ms = 650) => { const my = ++camGen, f = {x: tx, y: ty, z}; return tween(ms, e => { if (my !== camGen) return; tx = f.x + (t.x - f.x) * e; ty = f.y + (t.y - f.y) * e; z = f.z + (t.z - f.z) * e; apply(); }); };
+  const jump = t => { camGen++; tx = t.x; ty = t.y; z = t.z; apply(); };
+  const zoomBy = k => { const zz = Math.min(2.2, Math.max(.3, z * k)); uz = zz / base(); camTo(view((VW / 2 - tx) / z, ((VH - 40) / 2 - ty) / z, zz), 280); };
+
+  const state = (id, s) => { const n = N[id].el; n.classList.toggle('n8r', s === 'run'); n.classList.toggle('n8k', s === 'ok'); };
+  const exec = async (id, ms, g) => { state(id, 'run'); await sleep(ms); if (g === gen) state(id, 'ok'); };
+  const flow = (keys, ms, g) => { const ws = keys.map(k => E[k]);
+    ws.forEach(w => { w.g.style.strokeDasharray = w.L; w.g.style.strokeDashoffset = w.L; w.g.classList.add('n8o'); });
+    return tween(ms, e => ws.forEach(w => { w.g.style.strokeDashoffset = w.L * (1 - e); })).then(() => { if (g === gen) ws.forEach(w => w.lab.classList.add('n8o')); }); };
+  const sub = (id, text) => { const s = N[id].el.querySelector('.n8-lb small'); s.textContent = text; s.classList.remove('n8s'); void s.offsetWidth; s.classList.add('n8s'); };
+  const button = busy => { run.classList.toggle('n8b', busy); run.lastElementChild.textContent = busy ? 'Executing workflow' : 'Execute workflow';
+    run.firstElementChild.outerHTML = busy ? '<i class="n8sp" aria-hidden="true"></i>' : `<svg viewBox="0 0 24 24" aria-hidden="true">${FLASK}</svg>`; };
+
+  const reset = () => {
+    for (const id in N) state(id, null); sub('wait', NODES.wait.s);
+    Object.values(E).forEach(w => { w.g.classList.remove('n8o'); w.lab.classList.remove('n8o'); });
+    button(false); run.classList.remove('n8p'); toast.classList.remove('n8o'); fitBtn.classList.remove('n8o');
+  };
+  const play = async g => {
+    const W = guard(g), ex = (id, ms) => W(exec(id, ms, g)), fl = (keys, ms = 380) => flow(keys, ms, g);
+    await W(sleep(800)); run.classList.add('n8p'); await W(sleep(160)); run.classList.remove('n8p'); button(true); const t0 = performance.now();
+    await ex('trig', 450);
+    await W(Promise.all([fl(['trig>agent']), camTo(look('agent', 70))]));
+    state('agent', 'run'); await W(sleep(350)); await ex('model', 550); await ex('tool', 500); await W(sleep(200)); state('agent', 'ok');
+    await W(Promise.all([fl(['agent>sw']), camTo(look('sw', 20))]));
+    await ex('sw', 450);
+    await W(Promise.all([fl(['sw>find']), camTo(look('find', 40))]));
+    await ex('find', 500);
+    await W(Promise.all([fl(['find>reply']), camTo(look('reply', 40))]));
+    await ex('reply', 500);
+    await W(Promise.all([fl(['reply>wait']), camTo(look('wait', 50))]));
+    state('wait', 'run'); sub('wait', 'Waiting for the client'); await W(sleep(1300)); sub('wait', 'Replied: Thursday 10:30'); await W(sleep(350)); state('wait', 'ok');
+    await W(Promise.all([fl(['wait>book', 'wait>rec', 'wait>forms'], 450), camTo(look('rec', 40))]));
+    for (const id of ['book', 'rec', 'forms']) await ex(id, 380);
+    await W(Promise.all([fl(['book>sum', 'rec>sum', 'forms>sum']), camTo(look('sum', 40))]));
+    await ex('sum', 500);
+    button(false); toast.classList.add('n8o'); addRun(performance.now() - t0);
+    await W(sleep(1100)); if (big) fitBtn.classList.add('n8o'); await W(camTo(fitView(), 1000)); fitBtn.classList.remove('n8o');
+  };
+  let wake = null, active = true, manual = false; // manual: a run asked for by the visitor (Execute workflow, or a run in Executions)
+  const restart = () => { gen++; reset(); jump(look('agent', 30)); if (wake) { wake(); wake = null; } };
+  const runOnce = () => { manual = true; restart(); };
+  (async () => {
+    jump(look('agent', 30));
+    for (;;) {
+      const g = gen;
+      try {
+        if (!active && !manual) { await new Promise(r => { wake = r; }); continue; } // switched off: wait for a run or the switch
+        manual = false; reset(); await play(g);
+        if (!active) { await guard(g)(sleep(2800)); toast.classList.remove('n8o'); await new Promise(r => { wake = r; }); continue; }
+        if (REDUCE) { toast.classList.remove('n8o'); await new Promise(r => { wake = r; }); continue; }
+        await guard(g)(sleep(2800)); toast.classList.remove('n8o'); await guard(g)(camTo(look('agent', 30), 900));
+      } catch (e) { if (e !== STOP) throw e; }
+    }
+  })();
+
+  // The visitor's controls
+  root.querySelector('.n8zi').addEventListener('click', () => zoomBy(1.25));
+  root.querySelector('.n8zo').addEventListener('click', () => zoomBy(.8));
+  fitBtn.addEventListener('click', () => { if (big) { uz = 1; camTo(fitView(), 600); } else onFull(); });
+  run.addEventListener('click', () => { closeSteps(); runOnce(); });
+  const act = root.querySelector('.n8-act'), actLabel = act.firstElementChild;
+  act.addEventListener('click', () => { active = !active; act.setAttribute('aria-checked', active); actLabel.textContent = active ? 'Active' : 'Inactive'; restart(); });
+
+  // DL-158: Editor / Executions. Executions lists past runs (the newest added each time a run finishes); a row reopens the editor and runs it again
+  const tabE = root.querySelector('.n8te'), tabX = root.querySelector('.n8tx'), xs = root.querySelector('.n8-xs'), xsList = xs.querySelector('ol');
+  const np = root.querySelector('.n8-np'), plus = root.querySelector('.n8-plus'), find = np.querySelector('input'), none = np.querySelector('.n8-np-none');
+  let showingX = false, stepsOpen = false, runNo = 1042;
+  const hold = () => { held = showingX || stepsOpen; };
+  const fmt = d => d.toLocaleString('en-US', {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'});
+  const row = (d, id, secs, fresh) => `<li${fresh ? ' class="n8new"' : ''}><button type="button" aria-label="Open run ${id} in the editor and run it again"><i class="n8-xs-ok" aria-hidden="true">${CHECK}</i><span><b>${fmt(d)}</b><small><em>Succeeded</em> in ${secs}s</small></span><span class="n8-xs-id">#${id}</span></button></li>`;
+  const now = Date.now();
+  xsList.innerHTML = [[9, 11.4], [38, 10.8], [124, 12.3], [211, 11.9], [436, 10.6], [1370, 12.1]].map(([min, secs], k) => row(new Date(now - min * 60000), 1041 - k, secs)).join('');
+  function addRun(ms) { xsList.insertAdjacentHTML('afterbegin', row(new Date(), runNo++, (ms / 1000).toFixed(1), true)); while (xsList.children.length > 8) xsList.lastElementChild.remove(); }
+  const showView = x => { showingX = x; tabE.classList.toggle('n8o', !x); tabX.classList.toggle('n8o', x); tabE.setAttribute('aria-pressed', !x); tabX.setAttribute('aria-pressed', x);
+    xs.classList.toggle('n8o', x); if (x) closeSteps(); hold(); };
+  tabE.addEventListener('click', () => showView(false));
+  tabX.addEventListener('click', () => showView(true));
+  xsList.addEventListener('click', e => { if (e.target.closest('button')) { showView(false); runOnce(); } });
+
+  // Saved: a click saves again (a moment of "Saving", then a green tick)
+  const saved = root.querySelector('.n8-saved'); let saving = 0;
+  saved.addEventListener('click', () => { clearTimeout(saving); saved.classList.remove('n8dn'); saved.innerHTML = '<i class="n8sp" aria-hidden="true"></i>Saving';
+    saving = setTimeout(() => { saved.classList.add('n8dn'); saved.innerHTML = CHECK.replace('<svg', '<svg aria-hidden="true"') + 'Saved';
+      saving = setTimeout(() => { saved.classList.remove('n8dn'); saved.textContent = 'Saved'; }, 1600); }, REDUCE ? 0 : 650); });
+
+  // Plus: the "What happens next?" panel; search filters it; a pick, the close button, Escape or a click on the canvas closes it
+  function openSteps() { if (showingX) showView(false); stepsOpen = true; hold(); np.classList.add('n8o'); plus.setAttribute('aria-expanded', 'true');
+    if (matchMedia('(hover: hover)').matches) setTimeout(() => find.focus({preventScroll: true}), 120); }
+  function closeSteps() { if (!stepsOpen) return; stepsOpen = false; hold(); np.classList.remove('n8o'); plus.setAttribute('aria-expanded', 'false');
+    find.value = ''; filter(); if (np.contains(document.activeElement)) plus.focus({preventScroll: true}); }
+  const filter = () => { const q = find.value.trim().toLowerCase(); let n = 0;
+    np.querySelectorAll('li').forEach(li => { const hit = !q || li.textContent.toLowerCase().includes(q); li.hidden = !hit; n += hit; }); none.hidden = n > 0; };
+  plus.addEventListener('click', () => stepsOpen ? closeSteps() : openSteps());
+  np.querySelector('.n8-np-x').addEventListener('click', closeSteps);
+  find.addEventListener('input', filter);
+  np.querySelector('ul').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; b.classList.add('n8o'); setTimeout(() => { b.classList.remove('n8o'); closeSteps(); }, 260); });
+  cv.addEventListener('click', e => { if (stepsOpen && !np.contains(e.target) && !plus.contains(e.target)) closeSteps(); });
+  root.addEventListener('keydown', e => { if (e.key === 'Escape' && stepsOpen) { e.preventDefault(); e.stopPropagation(); closeSteps(); } });
+  return {pause: p => { paused = p; }, restart};
+}
+
+// The tile's editor, and its full-screen copy in a dialog over a pale veil (made on first open)
+const tileRoot = document.querySelector('.n8');
+if (!tileRoot) return;
+let dlg = null, bigEd = null;
+const openFull = () => {
+  if (!dlg) {
+    dlg = document.createElement('dialog'); dlg.className = 'n8-dlg'; dlg.setAttribute('aria-label', 'Example workflow, full screen');
+    dlg.innerHTML = '<button type="button" class="n8-x">Close</button><span class="n8 n8-big" role="group" aria-label="Example workflow: a new client enquiry, from the website form to a booked visit"></span>';
+    document.body.appendChild(dlg);
+    dlg.querySelector('.n8-x').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => { if (bigEd) bigEd.pause(true); tileEd.pause(false); document.documentElement.classList.remove('n8-lock'); });
+  }
+  tileEd.pause(true); document.documentElement.classList.add('n8-lock'); dlg.showModal();
+  if (!bigEd) bigEd = editor(dlg.querySelector('.n8'), true); else { bigEd.pause(false); bigEd.restart(); }
+};
+const tileEd = editor(tileRoot, false, openFull);
+window.__n8full = openFull; // screenshot hook: opens the full-screen editor
+})();
+</script>
+<script src="menu.js" defer></script>
+</body>
+</html>
